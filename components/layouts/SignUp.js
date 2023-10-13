@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { AiFillApple } from "react-icons/ai";
 import Link from 'next/link';
 
-const Login = ({providers, signIn}) => {
+const Login = () => {
 
     const [load, setLoad] = useState(false);
     const [reveal, setReveal] = useState(false);
@@ -24,25 +24,29 @@ const Login = ({providers, signIn}) => {
         <Col md={5}>
             <Container className='px-2 pt-5 top-container'>
                 <div className='px-5 pt-1'>
-                <h1 className='fw-900'>Login</h1>
-                <p className='grey2-txt mt-3'>Enter your credentials to access your account</p>
+                <h1 className='fw-900'>Sign-Up</h1>
+                <p className='grey2-txt mt-3'>Enter following fields     for signup</p>
                 <form onSubmit={handleSubmit}>
                 <div>
-                    {/* {error&&<Alert style={{marginLeft:'20%', marginRight:'20%'}} key={'danger'} variant={'danger'}>
-                    Wrong username or password
-                    </Alert>} */}
                     <div className='mb-4'>
-                        <div className='mb-2 fs-20'>Email address</div>
-                        <input className='login-inp' required placeholder='email@domain.com' value={username} onChange={(e)=>setUsername(e.target.value)} />
+                        <div className='mb-2 fs-20'>First Name</div>
+                        <input className='login-inp' required placeholder='Joe' value={username} onChange={(e)=>setUsername(e.target.value)} />
                         <HiOutlineMail className='username-img cur' />
                     </div>
                     <div className='mt-4'>
-                        <div className='mb-2'>Password</div>    
-                        <input className='login-inp' placeholder='password' required type={reveal?'text':'password'} value={password} onChange={(e)=>setPassword(e.target.value)} />
-                        <HiEye className='username-img cur' onClick={()=>setReveal(!reveal)} />
+                        <div className='mb-2'>Last Name</div>    
+                        <input className='login-inp' placeholder='Doe' required type={reveal?'text':'password'} value={password} onChange={(e)=>setPassword(e.target.value)} />
+                        <HiEye className='username-img cur' />
                     </div>
-                    <div style={{width:'70%'}} className='text-end'>
-                        <p className='orange-txt mt-1 fs-10 cur'>Forgot Password?</p>
+                    <div className='mt-4'>
+                        <div className='mb-2'>Phone Number</div>    
+                        <input className='login-inp' placeholder='example@.com' required type={reveal?'text':'password'} value={password} onChange={(e)=>setPassword(e.target.value)} />
+                        <HiEye className='username-img cur' />
+                    </div>
+                    <div className='mt-4'>
+                        <div className='mb-2'>Email address</div>    
+                        <input className='login-inp' placeholder='example@.com' required type={reveal?'text':'password'} value={password} onChange={(e)=>setPassword(e.target.value)} />
+                        <HiEye className='username-img cur' />
                     </div>
                     <div className='mt-4'>
                         <button type='submit' className='btn-login'>
@@ -55,18 +59,6 @@ const Login = ({providers, signIn}) => {
                         <Col md={2} className='text-center' style={{position:"relative", top:5}}>OR</Col>
                         <Col md={5}><hr/></Col>
                     </Row>
-                    </div>
-                    {Object.values(providers).map((provider) => (
-                    <div key={provider.name} className='px-5' style={{width:"70%"}}>
-                    <button className='provider-login' type='button' onClick={()=>signIn(provider.id)}>
-                        <FcGoogle className='pl-btm mx-2' size={15} />Login via Google
-                    </button>
-                    </div>
-                    ))}
-                    <div className='px-5' style={{width:"70%"}}>
-                        <button className='provider-login mt-3' type='button'>
-                            <AiFillApple className='pl-btm mx-2' size={15} />Login via Apple
-                        </button>
                     </div>
                 </div>
                 </form>

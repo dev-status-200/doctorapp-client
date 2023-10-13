@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import SignUp from '@/components/layouts/SignUp';
 
-export default function Home() {
+export default function signUp() {
   return (
     <>
       <Head>
@@ -11,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <button onClick={()=>signIn()}>onclick</button>
+        <SignUp/>
       </main>
     </>
   )
