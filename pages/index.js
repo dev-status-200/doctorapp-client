@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { useSession, signIn, signOut } from 'next-auth/react';
+import HomePage from '@/components/layouts/Home';
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <button onClick={()=>signIn()}>onclick</button>
+        <HomePage/>
       </main>
     </>
   )
