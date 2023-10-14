@@ -27,16 +27,11 @@
   }
 
   .username-img{
-    color: grey;
+    color: rgb(210, 95, 0);
     position: relative;
     right: 6%;
     font-size: 20px;
   }
-  .username-img:hover{
-    transition-duration: 300ms;
-    color: rgb(210, 95, 0);
-  }
-
   .btn-login {
     background-color: rgb(210, 95, 0);
     color: white;

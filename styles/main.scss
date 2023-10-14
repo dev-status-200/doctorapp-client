@@ -41,3 +41,26 @@
 .no-link{
     text-decoration: none;
 }
+
+::-webkit-scrollbar {
+    width: 7px;
+    height: 8px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #c6c6c6;
+    border-radius: 45px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #464646; 
+    border-radius: 45px;
+    
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #464646;
+  }
