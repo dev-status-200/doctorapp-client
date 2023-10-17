@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
-    "@next/swc-win32-x64-msvc": "^13.5.4",
     "antd": "^5.10.0",
     "bootstrap": "^5.3.2",
     "chart.js": "^4.4.0",
