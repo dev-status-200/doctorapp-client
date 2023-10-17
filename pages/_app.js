@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from "react";
 import Router, { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
-
 import "@/styles/globals.css";
 import "@/styles/main.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -13,27 +12,21 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  Router.events.on("routeChangeStart", () => {
-    setLoading(true);
-  });
-  Router.events.on("routeChangeComplete", () => {
-    setLoading(false);
-  });
+  Router.events.on("routeChangeStart", () => setLoading(true));
+  Router.events.on("routeChangeComplete", () => setLoading(false));
 
   return (
-    <>
-      {(router.pathname !== "/login" && router.pathname !== "/signup") && (
-        <SessionProvider session={session}>
-          {loading ? <Loader /> : <Layout><Component {...pageProps} /></Layout>}
-        </SessionProvider>
-      )}
-      {(router.pathname === "/login" || router.pathname === "/signup") && (
-        <Component {...pageProps} />
-      )}
-    </>
-
-  );
-}
+  <>
+    {(router.pathname !== "/login" && router.pathname !== "/signup" && router.pathname !== "/") && (
+      <SessionProvider session={session}>
+        {loading ? <Loader /> : <Layout><Component {...pageProps} /></Layout>}
+      </SessionProvider>
+    )}
+    {(router.pathname === "/" || router.pathname === "/login" || router.pathname === "/signup") && (
+      <Component {...pageProps} />
+    )}
+  </>
+)}
