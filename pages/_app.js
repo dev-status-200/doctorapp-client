@@ -13,7 +13,7 @@ export default function App({
   Component,
   pageProps: { session, ...pageProps },
 }) {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
 
   Router.events.on("routeChangeStart", () => {
@@ -22,8 +22,6 @@ export default function App({
   Router.events.on("routeChangeComplete", () => {
     setLoading(false);
   });
-
-  console.log(router.pathname)
 
   return (
     <>
