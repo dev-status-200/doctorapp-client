@@ -1,27 +1,41 @@
-import React, { useState } from 'react';
-import '@/styles/globals.css';
-import '@/styles/main.scss';
-//import { Inter } from 'next/font/google';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { Fragment, useState } from "react";
+import Router, { useRouter } from "next/router";
 import { SessionProvider } from "next-auth/react";
-import Router, { useRouter  } from 'next/router';
-import Loader from '@/components/shared/Loader';
 
-//const inter = Inter({ subsets: ['latin'] })
+import "@/styles/globals.css";
+import "@/styles/main.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function App({ Component, pageProps: { session, ...pageProps }, }) {
+import Loader from "@/components/shared/Loader";
+import Layout from "@/components/shared/Layout";
 
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}) {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  Router.events.on("routeChangeStart", () => { setLoading(true) });
-  Router.events.on("routeChangeComplete", () => { setLoading(false)});
+  Router.events.on("routeChangeStart", () => {
+    setLoading(true);
+  });
+  Router.events.on("routeChangeComplete", () => {
+    setLoading(false);
+  });
+
+  console.log(router.pathname)
 
   return (
-  <SessionProvider session={session}>
-    <div className={`{inter.className}`}>
-    { loading && <Loader/> }
-    { !loading && <Component {...pageProps} />}
-    </div>
-  </SessionProvider>
-)}
+    <>
+      {(router.pathname !== "/login" && router.pathname !== "/signup") && (
+        <SessionProvider session={session}>
+          {loading ? <Loader /> : <Layout><Component {...pageProps} /></Layout>}
+        </SessionProvider>
+      )}
+      {(router.pathname === "/login" || router.pathname === "/signup") && (
+        <Component {...pageProps} />
+      )}
+    </>
+
+  );
+}

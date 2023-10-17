@@ -5,9 +5,11 @@ import { HiOutlineMail, HiEye } from "react-icons/hi";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillApple } from "react-icons/ai";
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const Login = ({providers, signIn}) => {
 
+    const route =  useRouter()
     const [load, setLoad] = useState(false);
     const [reveal, setReveal] = useState(false);
     const [username, setUsername] = useState("");
@@ -15,6 +17,7 @@ const Login = ({providers, signIn}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        route.push('/dashboard')
     }
     
   return (
