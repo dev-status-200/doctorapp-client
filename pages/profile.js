@@ -1,8 +1,9 @@
-import React from 'react'
+import React from 'react';
+import Profile from '@/components/layouts/Profile';
 
 const profile = () => {
   return (
-    <div>profile</div>
+    <Profile/>
   )
 }
 

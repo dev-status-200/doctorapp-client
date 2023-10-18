@@ -36,10 +36,11 @@ const Header = () => {
           <Nav className="mr-auto">
             {navLinks.map((link) => (
               <Nav.Link
-                href={link.href}
                 className={router.route === link.href ? "active-link" : ""}
               >
-                {link.label}
+                <Link href={link.href} style={{textDecoration:'none', color:'white'}}>
+                  {link.label}
+                </Link>
               </Nav.Link>
             ))}
           </Nav>

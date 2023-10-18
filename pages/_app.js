@@ -22,7 +22,7 @@ export default function App({
   <>
     {(router.pathname !== "/login" && router.pathname !== "/signup" && router.pathname !== "/") && (
       <SessionProvider session={session}>
-        {loading ? <Loader /> : <Layout><Component {...pageProps} /></Layout>}
+        {loading ? <Layout><Loader /></Layout> : <Layout><Component {...pageProps} /></Layout>}
       </SessionProvider>
     )}
     {(router.pathname === "/" || router.pathname === "/login" || router.pathname === "/signup") && (
