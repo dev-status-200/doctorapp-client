@@ -29,18 +29,19 @@ const Header = () => {
     <div className="header-">
       <Navbar className="header-navbar px-4" expand="lg">
         <Navbar.Brand>
-          <Image src={Logo} height={60} width={60} alt="Brand Logo" /> Doctor App
+          <Image src={Logo} height={60} width={60} alt="Brand Logo" /> Doctor
+          App
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav className="mr-auto">
             {navLinks.map((link) => (
               <Nav.Link
+                href={link.href}
+                style={{ textDecoration: "none", color: "white" }}
                 className={router.route === link.href ? "active-link" : ""}
               >
-                <Link href={link.href} style={{textDecoration:'none', color:'white'}}>
-                  {link.label}
-                </Link>
+                {link.label}
               </Nav.Link>
             ))}
           </Nav>

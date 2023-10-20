@@ -1,25 +1,9 @@
-import React from 'react';
-import { Row, Col, Container } from "react-bootstrap";
+import React, { useState } from "react";
+import { EditProfile, ProfileOverview } from "./Profile";
 
 const Profile = () => {
-  return (
-    <div className="container-fluid mt-2">
-    <div className="top-section mb-4">
-      <h4>Profile Setting</h4>
-    </div>
-    <Container>
-    <Row>
-        <Col md={6}></Col>
-        <Col md={3}>
-        </Col>
-        <Col md={3} className='text-end'>
-            <button className='btn-orange-light mx-3'>Logout</button>
-            <button className='btn-orange'>Edit Profile</button>
-        </Col>
-    </Row>
-    </Container>
-  </div>
-  )
-}
+  const [edit, setEdit] = useState(false);
+  return <>{!edit ? <ProfileOverview setEdit={setEdit} /> : <EditProfile setEdit={setEdit}/>}</>;
+};
 
-export default Profile
+export default Profile;

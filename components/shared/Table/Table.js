@@ -18,36 +18,38 @@ const TableCom = (props) => {
   }
 
   return (
-    <div className="table-container">
+    <>
       {data.length > 0 ? (
-        <table striped bordered hover className="table">
-          <thead>
-            <tr>
-              {props.cols.map((ele, index) => {
-                return <th>{ele}</th>;
-              })}
-            </tr>
-          </thead>
+        <div className="table-container">
+          <table striped bordered hover className="table">
+            <thead>
+              <tr>
+                {props.cols.map((ele, index) => {
+                  return <th>{ele}</th>;
+                })}
+              </tr>
+            </thead>
 
-          <tbody>
-            {data.map((ele, i) => {
-              return (
-                <tr key={i}>
-                  {keys.map((key, index) => {
-                    return <td key={index}> {ele[key]}</td>;
-                  })}
-                </tr>
-              );
-            })}
-            <tr></tr>
-          </tbody>
-        </table>
+            <tbody>
+              {data.map((ele, i) => {
+                return (
+                  <tr key={i}>
+                    {keys.map((key, index) => {
+                      return <td key={index}> {ele[key]}</td>;
+                    })}
+                  </tr>
+                );
+              })}
+              <tr></tr>
+            </tbody>
+          </table>
+        </div>
       ) : (
         <div className="table-spinner">
           <Spinner animation="grow" variant="warning" />
         </div>
       )}
-    </div>
+    </>
   );
 };
 
