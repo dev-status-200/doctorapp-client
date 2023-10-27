@@ -1,10 +1,10 @@
 import React from 'react'
 
-import Dashboard from '@/components/layouts/Dashboard'
+import Dashboard from '@/components/layouts/Dashboard/Dashboard'
 
 const dashboard = () => {
   return (
-    <div><Dashboard/></div>
+    <><Dashboard/></>
   )
 }
 

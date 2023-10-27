@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, memo } from "react";
 import {
   Chart,
   PieController,
@@ -55,4 +55,4 @@ function PieChart(props) {
   );
 }
 
-export default PieChart;
+export default  memo(PieChart);

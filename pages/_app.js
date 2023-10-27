@@ -19,14 +19,27 @@ export default function App({
   Router.events.on("routeChangeComplete", () => setLoading(false));
 
   return (
-  <>
-    {(router.pathname !== "/login" && router.pathname !== "/signup" && router.pathname !== "/") && (
-      <SessionProvider session={session}>
-        {loading ? <Layout><Loader /></Layout> : <Layout><Component {...pageProps} /></Layout>}
-      </SessionProvider>
-    )}
-    {(router.pathname === "/" || router.pathname === "/login" || router.pathname === "/signup") && (
-      <Component {...pageProps} />
-    )}
-  </>
-)}
+    <>
+      {router.pathname !== "/login" &&
+        router.pathname !== "/signup" &&
+        router.pathname !== "/" &&
+        router.pathname !== "/admin_login" && (
+          <SessionProvider session={session}>
+            {loading ? (
+              <Layout>
+                <Loader />
+              </Layout>
+            ) : (
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            )}
+          </SessionProvider>
+        )}
+      {(router.pathname === "/" ||
+        router.pathname === "/login" ||
+        router.pathname === "/signup" ||
+        router.pathname === "/admin_login") && <Component {...pageProps} />}
+    </>
+  );
+}

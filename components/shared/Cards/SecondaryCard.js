@@ -1,16 +1,14 @@
-import React from "react";
+import React,{memo} from "react";
 
-const Card = ({ title, children }) => {
+const Card = ({ title, children, size }) => {
   return (
     <div className="responsive-card">
-    <div className="card-header">
-      {title}
+      <div className={size == "lg" ? "card-header" : "card-header-secondary"}>
+        {title}
+      </div>
+      <div className="card-content">{children}</div>
     </div>
-    <div className="card-content">
-      {children}
-    </div>
-  </div>
   );
 };
 
-export default Card;
+export default  memo(Card);

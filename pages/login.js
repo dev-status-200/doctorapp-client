@@ -1,10 +1,13 @@
 import Head from 'next/head';
 import Cookies from 'cookies';
-import Login from '@/components/layouts/Login';
 import { getProviders, signIn } from "next-auth/react";
+
+import Login from '@/components/layouts/Auth/Login';
+
 import verifyToken from '@/apis/verifyToken';
 
 export default function login({providers, sessionRequest}) {
+  console.log(providers, sessionRequest)
   return (
   <>
     <Head>
@@ -14,7 +17,7 @@ export default function login({providers, sessionRequest}) {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <main>
-      <Login providers={providers} signIn={signIn} sessionRequest={sessionRequest} />
+      {<Login providers={providers} signIn={signIn} sessionRequest={sessionRequest} />}
     </main>
   </>
   )

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{memo} from "react";
 
 import { FunnelPlotOutlined } from "@ant-design/icons/lib/icons";
 
@@ -24,4 +24,4 @@ const ChartHeader = (props) => {
   );
 };
 
-export default ChartHeader;
+export default  memo(ChartHeader);

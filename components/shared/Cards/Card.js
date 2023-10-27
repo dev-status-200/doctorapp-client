@@ -1,4 +1,4 @@
-import React from "react";
+import React,{memo} from "react";
 
 import TableHeader from "../Table/TableHeader";
 import ChartHeader from "../Charts/ChartHeader";
@@ -22,4 +22,4 @@ const Card = (props) => {
   );
 };
 
-export default Card;
+export default  memo(Card);

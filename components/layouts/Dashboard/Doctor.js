@@ -1,13 +1,13 @@
-import React from "react";
+import React,{memo} from "react";
 
 import { dataArray, dataColumns } from "@/mock/appointments";
 import { HiOutlineCalendarDays } from "react-icons/hi2";
 
-import Table from "../shared/Table/Table";
-import PieChart from "../shared/Charts/PieChart";
-import Card from "../shared/Cards/Card";
+import Table from "../../shared/Table/Table";
+import PieChart from "../../shared/Charts/PieChart";
+import Card from "../../shared/Cards/Card";
 
-const Dashboard = () => {
+const Doctor = () => {
   const data = {
     labels: ["Complete Appointments", "Cancel Appointments"],
     data: [300, 150],
@@ -55,4 +55,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default memo(Doctor);

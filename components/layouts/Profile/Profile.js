@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useReducer } from "react";
+import { reducer, initialState } from "./profileReducer";
+import axios from "axios";
 
 import { Row, Col } from "react-bootstrap";
 import { HiOutlineArrowRightOnRectangle, HiChevronLeft } from "react-icons/hi2";
 
-import Card from "@/components/shared/Cards/SecondaryCard";
+import { profileMenu } from "@/utils/Menu";
 
 import { MyAccount, MyAccountEdit } from "./MyAccount";
 import {
@@ -11,10 +13,17 @@ import {
   ClinicalInformationEdit,
 } from "./ClinicalInformation";
 import { ContentDetails, ContentDetailsEdit } from "./ContentDetails";
+// import { FacilityInfoEdit } from "./FacilityInfo";
 import { Pricing, PricingEdit } from "./Pricing";
 import { Services, ServicesEdit } from "./Services";
+import { Education, EducationEdit } from "./Education";
+import { Experience, ExperienceEdit } from "./Experience";
 
-const ProfileOverview = ({ setEdit }) => {
+import Card from "@/components/shared/Cards/SecondaryCard";
+import SubMenu from "@/components/shared/SubMenu";
+import notificationComp from "@/functions/notificationComp";
+
+const ProfileOverview = ({ data, setEdit }) => {
   return (
     <div className="container-fluid mt-2">
       <div className="top-section mb-4 mt-4">
@@ -43,29 +52,39 @@ const ProfileOverview = ({ setEdit }) => {
       <Row className="m-4">
         <Col md={12} xl={8} className="mt-3">
           <Card title={"My Account"}>
-            <MyAccount />
+            <MyAccount data={data} />
           </Card>
         </Col>
         <Col md={12} xl={4} className="mt-3">
           <Card title={"Clinical Information"}>
-            <ClinicalInformation />
+            <ClinicalInformation data={data} />
           </Card>
         </Col>
       </Row>
       <Row className="m-4">
         <Col lg={12} xl={4} className="mt-3">
           <Card title={"Content Details"}>
-            <ContentDetails />
+            <ContentDetails data={data} />
           </Card>
         </Col>
         <Col lg={12} xl={4} className="mt-3">
           <Card title={"Pricing"}>
-            <Pricing />
+            <Pricing data={data} />
           </Card>
         </Col>
         <Col lg={12} xl={4} className="mt-3">
           <Card title={"Service & Specialization"}>
-            <Services />
+            <Services data={data} />
+          </Card>
+        </Col>
+        <Col lg={12} xl={4} className="mt-3">
+          <Card title={"Education"}>
+            <Education data={data} />
+          </Card>
+        </Col>
+        <Col lg={12} xl={4} className="mt-3">
+          <Card title={"Experience"}>
+            <Experience data={data} />
           </Card>
         </Col>
       </Row>
@@ -73,25 +92,65 @@ const ProfileOverview = ({ setEdit }) => {
   );
 };
 
-const EditProfile = ({ setEdit }) => {
+const EditProfile = ({ setEdit, data }) => {
   const [active, setActive] = useState(0);
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  React.useEffect(() => {
+    if (data) {
+      dispatch({ type: "SET_ACCOUNT", payload: data });
+      dispatch({ type: "SET_CLINIC", payload: data.Clinics });
+      dispatch({ type: "SET_EDUCATION", payload: data.Education });
+      dispatch({ type: "SET_EXPERIENCE", payload: data.Experiences });
+      dispatch({ type: "SET_PRICING", payload: data.Pricings });
+      dispatch({ type: "SET_SPECIALIZATION", payload: data.Specializations });
+      dispatch({ type: "SET_SERVICES", payload: data.Services });
+    }
+  }, []);
+
   const renderStep = () => {
     switch (active) {
       case 0:
-        return <MyAccountEdit />;
+        return <MyAccountEdit onClick={submitForm} />;
       case 1:
-        return <ClinicalInformationEdit />;
+        return <ClinicalInformationEdit onClick={submitForm} />;
       case 2:
-        return <ServicesEdit />;
+        return <ContentDetailsEdit onClick={submitForm} />;
       case 3:
-        return <ContentDetailsEdit />;
+        return <PricingEdit onClick={submitForm} />;
       case 4:
-        return <PricingEdit />;
+        return <ServicesEdit onClick={submitForm} />;
+      case 5:
+        return <EducationEdit onClick={submitForm} />;
+      case 6:
+        return <ExperienceEdit onClick={submitForm} />;
 
       default:
         return null;
     }
   };
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    try {
+      axios
+        .post(process.env.NEXT_PUBLIC_DOCTOR_PROFILE_UPDATE, state)
+        .then((r) => {
+          if (r.data.status === "success") {
+            notificationComp(
+              "Profile updated!",
+              "Your changes are saved.",
+              "green"
+            );
+          } else {
+            notificationComp("Error!", "Profile not updated!", "red");
+          }
+        });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <>
       <div className="container-fluid mt-2">
@@ -116,11 +175,18 @@ const EditProfile = ({ setEdit }) => {
             </Col>
           </Row>
         </div>
-        <Row className="px-5"></Row>
-        <Row>{renderStep()}</Row>
+
+        <SubMenu menu={profileMenu} setStep={setActive} step={active} />
+        <Row>{React.cloneElement(renderStep(), { state, dispatch })}</Row>
       </div>
     </>
   );
 };
 
-export { ProfileOverview, EditProfile };
+const MemoizedProfileOverview = React.memo(ProfileOverview);
+const MemoizedEditProfile = React.memo(EditProfile);
+
+export {
+  MemoizedProfileOverview as ProfileOverview,
+  MemoizedEditProfile as EditProfile,
+};

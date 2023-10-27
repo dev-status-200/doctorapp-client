@@ -1,6 +1,5 @@
-import React from "react";
+import React,{memo} from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 import Navbar from "react-bootstrap/Navbar";
@@ -59,4 +58,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default  memo(Header);

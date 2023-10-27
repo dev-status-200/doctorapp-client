@@ -11,10 +11,13 @@
   .form-section {
     flex: 1;
     padding: 25px;
-    div {
+    .text-div {
       background-color: rgb(248, 248, 248);
       border-radius: 10px;
       padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-align: justify;
     
     }

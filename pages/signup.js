@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useSession, signIn, signOut } from 'next-auth/react';
-import SignUp from '@/components/layouts/SignUp';
+import SignUp from '@/components/layouts/Auth/SignUp';
 
 export default function signUp() {
   return (
