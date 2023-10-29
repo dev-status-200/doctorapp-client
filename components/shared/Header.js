@@ -1,4 +1,4 @@
-import React,{memo} from "react";
+import React, { memo } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
@@ -34,8 +34,9 @@ const Header = () => {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav className="mr-auto">
-            {navLinks.map((link) => (
+            {navLinks.map((link, i) => (
               <Nav.Link
+                key={i}
                 href={link.href}
                 style={{ textDecoration: "none", color: "white" }}
                 className={router.route === link.href ? "active-link" : ""}
@@ -58,4 +59,4 @@ const Header = () => {
   );
 };
 
-export default  memo(Header);
+export default memo(Header);

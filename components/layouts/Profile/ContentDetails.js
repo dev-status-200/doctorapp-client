@@ -83,12 +83,12 @@ const ContentDetails = ({ data }) => {
 };
 
 const ContentDetailsEdit = ({ state, dispatch, onSubmit }) => {
-  const address1 = state.doctor.address1;
-  const address2 = state.doctor.address2;
-  const province = state.doctor.state;
-  const city = state.doctor.city;
-  const country = state.doctor.country;
-  const postal = state.doctor.postal;
+  const address1 = state.doctor.address1||'';
+  const address2 = state.doctor.address2||'';
+  const province = state.doctor.state||'';
+  const city = state.doctor.city||'';
+  const country = state.doctor.country||'';
+  const postal = state.doctor.postal||'';
 
   const handleChange = (field, value) => {
     dispatch({

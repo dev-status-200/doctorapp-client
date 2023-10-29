@@ -12,7 +12,6 @@ import IconButton from "@/components/shared/Form/IconButton";
 
 const ClinicalInformation = ({ data }) => {
   const displayClinicInfo = data?.Clinics || [];
-  console.log(displayClinicInfo);
   return (
     <>
       {displayClinicInfo.length === 0 ? (
@@ -50,7 +49,7 @@ const ClinicalInformation = ({ data }) => {
         <>
           {displayClinicInfo.map((item, index) => {
             return (
-              <div className="form-container">
+              <div key={index} className="form-container">
                 <div key={item.name} className="form-section">
                   <span>
                     <label>
@@ -74,14 +73,15 @@ const ClinicalInformation = ({ data }) => {
                   <>
                     <label>Clinic Image:</label>
                     {item.images === null || item.images === "" ? (
-                      <div className="m-4">
+                      <div key={index} className="m-4">
                         <HiOutlineSquaresPlus size={35} /> No images added yet,
                         please add the images.
                       </div>
                     ) : (
                       <div className="scroll-div">
-                        {item.images.map((img, index) => (
+                        {item.images.map((img, i) => (
                           <Image
+                            key={i}
                             className="p-1"
                             style={{ borderRadius: 10 }}
                             width={250}
@@ -160,7 +160,7 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
     console.log(id, index);
     if (id != undefined || id != "") {
       state.delete.clinic.push(id);
-      console.log(state.delete.clinic)
+      console.log(state.delete.clinic);
     }
 
     updatedClinics.splice(index, 1);
@@ -181,7 +181,7 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
         >
           {clinics.map((clinic, index) => {
             return (
-              <Row className="m-3">
+              <Row key={index} className="m-3">
                 {index !== 0 && (
                   <div style={{ float: "right" }} className="mt-4">
                     <IconButton
@@ -201,7 +201,7 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
                     <Form.Label>Clinic Name</Form.Label>
                     <Form.Control
                       required
-                      value={clinic.name}
+                      value={clinic.name||''}
                       onChange={(e) =>
                         handleChange(index, "name", e.target.value)
                       }
@@ -217,7 +217,7 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
                     <Form.Label>Clinic Address</Form.Label>
                     <Form.Control
                       required
-                      value={clinic.address}
+                      value={clinic.address||''}
                       onChange={(e) =>
                         handleChange(index, "address", e.target.value)
                       }
@@ -233,7 +233,7 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
                     <Form.Label>Clinic Email</Form.Label>
                     <Form.Control
                       required
-                      value={clinic.email}
+                      value={clinic.email||''}
                       onChange={(e) =>
                         handleChange(index, "email", e.target.value)
                       }

@@ -114,7 +114,7 @@ const ExperienceEdit = ({ state, dispatch, onSubmit }) => {
       <Card title={"Experience"}>
         <form onSubmit={(e)=>{onSubmit(e)}}>
           {experience.map((experience, index) => (
-            <Row className="m-3">
+            <Row key={index} className="m-3">
               {index !== 0 && (
                 <div style={{ float: "right" }} className="mt-4">
                   <IconButton
@@ -133,7 +133,7 @@ const ExperienceEdit = ({ state, dispatch, onSubmit }) => {
                   <Form.Label>Hospital</Form.Label>
                   <Form.Control
                     required
-                    value={experience.hospitalName}
+                    value={experience.hospitalName||''}
                     onChange={(e) =>
                       handleChange(index, "hospitalName", e.target.value)
                     }
@@ -149,7 +149,7 @@ const ExperienceEdit = ({ state, dispatch, onSubmit }) => {
                   <Form.Label>From</Form.Label>
                   <Form.Control
                     required
-                    value={experience.from}
+                    value={experience.from||''}
                     onChange={(e) =>
                       handleChange(index, "from", e.target.value)
                     }
@@ -165,7 +165,7 @@ const ExperienceEdit = ({ state, dispatch, onSubmit }) => {
                   <Form.Label>To</Form.Label>
                   <Form.Control
                     required
-                    value={experience.to}
+                    value={experience.to||''}
                     onChange={(e) => handleChange(index, "to", e.target.value)}
                     className="custom-focus"
                     size="md"
@@ -180,7 +180,7 @@ const ExperienceEdit = ({ state, dispatch, onSubmit }) => {
                   <Form.Label>Designation</Form.Label>
                   <Form.Control
                     required
-                    value={experience.designation}
+                    value={experience.designation||''}
                     onChange={(e) =>
                       handleChange(index, "designation", e.target.value)
                     }

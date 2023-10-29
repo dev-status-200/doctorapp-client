@@ -134,7 +134,7 @@ const PricingEdit = ({ state, dispatch, onSubmit }) => {
           <Form.Label>Service</Form.Label>
           <Form.Control
             name="service"
-            value={newService.service}
+            value={newService.service||''}
             onChange={handleChange}
             className="custom-focus"
             size="md"
@@ -147,7 +147,7 @@ const PricingEdit = ({ state, dispatch, onSubmit }) => {
           <Form.Label>Price</Form.Label>
           <Form.Control
             name="price"
-            value={newService.price}
+            value={newService.price||''}
             onChange={handleChange}
             className="custom-focus"
             size="md"

@@ -127,7 +127,7 @@ const EducationEdit = ({ state, dispatch, onSubmit }) => {
                   <Form.Label>Degree</Form.Label>
                   <Form.Control
                     required
-                    value={education.degree}
+                    value={education.degree||''}
                     onChange={(e) =>
                       handleChange(index, "degree", e.target.value)
                     }
@@ -143,7 +143,7 @@ const EducationEdit = ({ state, dispatch, onSubmit }) => {
                   <Form.Label>Institute/College</Form.Label>
                   <Form.Control
                     required
-                    value={education.institute}
+                    value={education.institute||''}
                     onChange={(e) =>
                       handleChange(index, "institute", e.target.value)
                     }
@@ -159,7 +159,7 @@ const EducationEdit = ({ state, dispatch, onSubmit }) => {
                   <Form.Label>Year of Completion</Form.Label>
                   <Form.Control
                     required
-                    value={education.year}
+                    value={education.year||''}
                     onChange={(e) =>
                       handleChange(index, "year", e.target.value)
                     }

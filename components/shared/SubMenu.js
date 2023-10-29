@@ -5,7 +5,7 @@ const SubMenu = ({ menu, step, setStep }) => {
     <div className="sub-menu">
       {menu.map((item, index) => {
         return (
-          <a onClick={()=>{setStep(item.id)}} className={step == item.id ? "clicked" : ""}>
+          <a key={index} onClick={()=>{setStep(item.id)}} className={step == item.id ? "clicked" : ""}>
            {item.text}
           </a>
         );

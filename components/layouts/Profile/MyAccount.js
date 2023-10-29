@@ -117,7 +117,7 @@ const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
             <Form.Group>
               <Form.Label>First name</Form.Label>
               <Form.Control
-                value={firstName}
+                value={firstName||''}
                 onChange={(e) => handleChange("firstName", e.target.value)}
                 className="custom-focus"
                 size="md"
@@ -130,7 +130,7 @@ const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
             <Form.Group>
               <Form.Label>Last name</Form.Label>
               <Form.Control
-                value={lastName}
+                value={lastName||''}
                 onChange={(e) => handleChange("lastName", e.target.value)}
                 className="custom-focus"
                 size="md"
@@ -143,7 +143,7 @@ const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
             <Form.Group>
               <Form.Label>Email</Form.Label>
               <Form.Control
-                value={email}
+                value={email||''}
                 onChange={(e) => handleChange("email", e.target.value)}
                 className="custom-focus"
                 size="md"
@@ -157,7 +157,7 @@ const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
             <Form.Group>
               <Form.Label>D.O.B</Form.Label>
               <Form.Control
-                value={dob}
+                value={dob||''}
                 onChange={(e) => handleChange("dob", e.target.value)}
                 className="custom-focus"
                 size="md"
@@ -170,7 +170,7 @@ const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
             <Form.Group>
               <Form.Label>Gender</Form.Label>
               <Form.Control
-                value={gender}
+                value={gender||''}
                 onChange={(e) => handleChange("gender", e.target.value)}
                 className="custom-focus"
                 size="md"
@@ -181,10 +181,10 @@ const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
           </Col>
         </Row>
         <TextArea
-          value={bio}
+          value={bio||''}
           title={"About Me"}
           onChange={(e) => handleChange("bio", e.target.value)}
-          description={bio}
+          description={bio||''}
           subtitle={"(Write down your bio)"}
         />
         <div style={{ float: "right" }} className="p-3">
