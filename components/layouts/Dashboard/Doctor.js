@@ -1,11 +1,13 @@
-import React,{memo} from "react";
-
+import React,{ memo, useEffect, useState } from "react";
+import Cookies from "js-cookie";
 import { dataArray, dataColumns } from "@/mock/appointments";
 import { HiOutlineCalendarDays } from "react-icons/hi2";
 
 import Table from "../../shared/Table/Table";
 import PieChart from "../../shared/Charts/PieChart";
 import Card from "../../shared/Cards/Card";
+
+import moment from "moment";
 
 const Doctor = () => {
   const data = {
@@ -15,6 +17,18 @@ const Doctor = () => {
     borderColor: ["rgba(255, 99, 132, 1)", "rgba(54, 162, 235, 1)"],
   };
 
+  useEffect(() => {
+    getUsername();
+  }, [])
+
+  const [username, setUsername] = useState("")
+
+  async function getUsername(){
+    let tempUser = await Cookies.get("username");
+    console.log(tempUser);
+    setUsername(tempUser)
+  }
+  
   return (
   <div className="container-fluid mt-2">
     <div className="top-section mb-4">
@@ -22,8 +36,9 @@ const Doctor = () => {
     </div>
     <div className="row middle-section">
       <div className="col-md-6">
-        <h3>Good Evening Dr. Stephen</h3>
-        <p>Monday, 7th January, 2023</p>
+        <h3>Welcome Dr. {username}</h3>
+        <p>{moment().format("dddd, DD MMMM, YYYY")}</p>
+        {/* <p>Monday, 7th January, 2023</p> */}
       </div>
       <div className="col-md-6 d-flex align-items-center justify-content-end">
         <HiOutlineCalendarDays

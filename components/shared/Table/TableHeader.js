@@ -12,7 +12,7 @@ const TableHeader = (props) => {
       <div className="controls-container">
         <div className="search-container">
           <input type="text" placeholder="Search by location" />
-          <HiSearch class="search-icon" />
+          <HiSearch className="search-icon" />
         </div>
         <div className="sort-container">
           <label >Sort By</label>
