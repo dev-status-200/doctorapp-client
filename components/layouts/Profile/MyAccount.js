@@ -30,7 +30,7 @@ const MyAccount = ({ data }) => {
             </span>
             <span className="form-group">
               <label>Gender:</label>
-              <p>{data.gender ? data.gender : 'Set your gender'}</p>
+              <p>{data.gender ? data.gender : "Set your gender"}</p>
             </span>
             <span className="form-group">
               <label>D.O.B:</label>
@@ -99,7 +99,7 @@ const MyAccount = ({ data }) => {
   );
 };
 
-const MyAccountEdit = ({ state, dispatch, onClick }) => {
+const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
   const { bio, firstName, lastName, email, gender, dob } = state.doctor;
 
   const handleChange = (field, value) => {
@@ -118,9 +118,7 @@ const MyAccountEdit = ({ state, dispatch, onClick }) => {
               <Form.Label>First name</Form.Label>
               <Form.Control
                 value={firstName}
-                onChange={(e) =>
-                  handleChange("firstName", e.target.value)
-                }
+                onChange={(e) => handleChange("firstName", e.target.value)}
                 className="custom-focus"
                 size="md"
                 type="text"
@@ -133,9 +131,7 @@ const MyAccountEdit = ({ state, dispatch, onClick }) => {
               <Form.Label>Last name</Form.Label>
               <Form.Control
                 value={lastName}
-                onChange={(e) =>
-                  handleChange("lastName", e.target.value)
-                }
+                onChange={(e) => handleChange("lastName", e.target.value)}
                 className="custom-focus"
                 size="md"
                 type="text"
@@ -187,12 +183,17 @@ const MyAccountEdit = ({ state, dispatch, onClick }) => {
         <TextArea
           value={bio}
           title={"About Me"}
-          onChange={(e) => handleChange("bio",e.target.value)}
+          onChange={(e) => handleChange("bio", e.target.value)}
           description={bio}
           subtitle={"(Write down your bio)"}
         />
         <div style={{ float: "right" }} className="p-3">
-          <button className="btn-orange mx-2" onClick={onClick}>
+          <button
+            className="btn-orange mx-2"
+            onClick={(e) => {
+              onSubmit(e);
+            }}
+          >
             Save
           </button>
           <button className="btn-orange-light mx-2">Cancel</button>

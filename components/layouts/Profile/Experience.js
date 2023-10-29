@@ -66,7 +66,7 @@ const Experience = ({ data }) => {
   );
 };
 
-const ExperienceEdit = ({ state, dispatch, onClick }) => {
+const ExperienceEdit = ({ state, dispatch, onSubmit }) => {
   const [experience, setExperience] = useState(
     state.experience.length > 0 ? state.experience : [{}]
   );
@@ -112,93 +112,104 @@ const ExperienceEdit = ({ state, dispatch, onClick }) => {
   return (
     <Col md={11} className="m-auto justify-content-center mt-4">
       <Card title={"Experience"}>
-        {experience.map((experience, index) => (
-          <Row className="m-3" key={index}>
-            {index !== 0 && (
-              <div style={{ float: "right" }} className="mt-4">
-                <IconButton
-                  onClick={() => {
-                    removeExperience(index, experience.id);
-                  }}
-                  title={"Remove"}
-                  icon={
-                    <HiXCircle size={23} color="#db4855" className="mx-1" />
-                  }
-                />
-              </div>
-            )}
-            <Col md={4}>
-              <Form.Group>
-                <Form.Label>Hospital</Form.Label>
-                <Form.Control
-                  value={experience.hospitalName}
-                  onChange={(e) =>
-                    handleChange(index, "hospitalName", e.target.value)
-                  }
-                  className="custom-focus"
-                  size="md"
-                  type="text"
-                  placeholder="Aga Khan Hospital"
-                />
-              </Form.Group>
-            </Col>
-            <Col md={4}>
-              <Form.Group>
-                <Form.Label>From</Form.Label>
-                <Form.Control
-                  value={experience.from}
-                  onChange={(e) => handleChange(index, "from", e.target.value)}
-                  className="custom-focus"
-                  size="md"
-                  type="text"
-                  placeholder="2001"
-                />
-              </Form.Group>
-            </Col>
-            <Col md={4}>
-              <Form.Group>
-                <Form.Label>To</Form.Label>
-                <Form.Control
-                  value={experience.to}
-                  onChange={(e) => handleChange(index, "to", e.target.value)}
-                  className="custom-focus"
-                  size="md"
-                  type="text"
-                  placeholder="2002"
-                />
-              </Form.Group>
-            </Col>
-            <div className="mt-4" />
-            <Col md={4}>
-              <Form.Group>
-                <Form.Label>Designation</Form.Label>
-                <Form.Control
-                  value={experience.designation}
-                  onChange={(e) =>
-                    handleChange(index, "designation", e.target.value)
-                  }
-                  className="custom-focus"
-                  size="md"
-                  type="text"
-                  placeholder="Surgeon"
-                />
-              </Form.Group>
-            </Col>
-          </Row>
-        ))}
-        <div className="m-4">
+        <form onSubmit={(e)=>{onSubmit(e)}}>
+          {experience.map((experience, index) => (
+            <Row className="m-3">
+              {index !== 0 && (
+                <div style={{ float: "right" }} className="mt-4">
+                  <IconButton
+                    onClick={() => {
+                      removeExperience(index, experience.id);
+                    }}
+                    title={"Remove"}
+                    icon={
+                      <HiXCircle size={23} color="#db4855" className="mx-1" />
+                    }
+                  />
+                </div>
+              )}
+              <Col md={4}>
+                <Form.Group>
+                  <Form.Label>Hospital</Form.Label>
+                  <Form.Control
+                    required
+                    value={experience.hospitalName}
+                    onChange={(e) =>
+                      handleChange(index, "hospitalName", e.target.value)
+                    }
+                    className="custom-focus"
+                    size="md"
+                    type="text"
+                    placeholder="Aga Khan Hospital"
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={4}>
+                <Form.Group>
+                  <Form.Label>From</Form.Label>
+                  <Form.Control
+                    required
+                    value={experience.from}
+                    onChange={(e) =>
+                      handleChange(index, "from", e.target.value)
+                    }
+                    className="custom-focus"
+                    size="md"
+                    type="text"
+                    placeholder="2001"
+                  />
+                </Form.Group>
+              </Col>
+              <Col md={4}>
+                <Form.Group>
+                  <Form.Label>To</Form.Label>
+                  <Form.Control
+                    required
+                    value={experience.to}
+                    onChange={(e) => handleChange(index, "to", e.target.value)}
+                    className="custom-focus"
+                    size="md"
+                    type="text"
+                    placeholder="2002"
+                  />
+                </Form.Group>
+              </Col>
+              <div className="mt-4" />
+              <Col md={4}>
+                <Form.Group>
+                  <Form.Label>Designation</Form.Label>
+                  <Form.Control
+                    required
+                    value={experience.designation}
+                    onChange={(e) =>
+                      handleChange(index, "designation", e.target.value)
+                    }
+                    className="custom-focus"
+                    size="md"
+                    type="text"
+                    placeholder="Surgeon"
+                  />
+                </Form.Group>
+              </Col>
+            </Row>
+          ))}
+          <div style={{ float: "right" }} className="p-3 mt-4">
+            <button
+
+              className="btn-orange mx-2"
+            >
+              Save
+            </button>
+            <button className="btn-orange-light mx-2">Cancel</button>
+          </div>
+        </form>
+        <div className="m-4 mt-5">
           <button
             onClick={addMore}
             style={{ background: "none", border: "none", color: "#f20" }}
           >
             + Add More
           </button>
-        </div>
-        <div style={{ float: "right" }} className="p-3 mt-4">
-          <button onClick={onClick} className="btn-orange mx-2">
-            Save
-          </button>
-          <button className="btn-orange-light mx-2">Cancel</button>
         </div>
       </Card>
     </Col>

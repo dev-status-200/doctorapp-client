@@ -103,7 +103,7 @@ const ClinicalInformation = ({ data }) => {
   );
 };
 
-const ClinicalInformationEdit = ({ state, dispatch, onClick }) => {
+const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
   const [clinics, setClinics] = useState(
     state.clinic.length > 0 ? state.clinic : [{}]
   );
@@ -130,8 +130,8 @@ const ClinicalInformationEdit = ({ state, dispatch, onClick }) => {
 
     updatedClinics[index][field] = value;
     updatedClinics[index]["DoctorId"] = id;
-
     setClinics(updatedClinics);
+
     dispatch({ type: "SET_CLINIC", payload: updatedClinics });
   };
 
@@ -158,8 +158,9 @@ const ClinicalInformationEdit = ({ state, dispatch, onClick }) => {
   const removeClinic = (index, id) => {
     const updatedClinics = [...clinics];
     console.log(id, index);
-    if (id != undefined) {
+    if (id != undefined || id != "") {
       state.delete.clinic.push(id);
+      console.log(state.delete.clinic)
     }
 
     updatedClinics.splice(index, 1);
@@ -169,11 +170,15 @@ const ClinicalInformationEdit = ({ state, dispatch, onClick }) => {
       payload: updatedClinics,
     });
   };
-  console.log(state.clinic)
+
   return (
     <Col md={11} className="m-auto justify-content-center mt-4">
       <Card title={"Clinic Information"}>
-        <form onSubmit={onClick(e)} >
+        <form
+          onSubmit={(e) => {
+            onSubmit(e);
+          }}
+        >
           {clinics.map((clinic, index) => {
             return (
               <Row className="m-3">
@@ -195,7 +200,7 @@ const ClinicalInformationEdit = ({ state, dispatch, onClick }) => {
                   <Form.Group>
                     <Form.Label>Clinic Name</Form.Label>
                     <Form.Control
-                      name=""
+                      required
                       value={clinic.name}
                       onChange={(e) =>
                         handleChange(index, "name", e.target.value)
@@ -211,6 +216,7 @@ const ClinicalInformationEdit = ({ state, dispatch, onClick }) => {
                   <Form.Group>
                     <Form.Label>Clinic Address</Form.Label>
                     <Form.Control
+                      required
                       value={clinic.address}
                       onChange={(e) =>
                         handleChange(index, "address", e.target.value)
@@ -226,6 +232,7 @@ const ClinicalInformationEdit = ({ state, dispatch, onClick }) => {
                   <Form.Group>
                     <Form.Label>Clinic Email</Form.Label>
                     <Form.Control
+                      required
                       value={clinic.email}
                       onChange={(e) =>
                         handleChange(index, "email", e.target.value)

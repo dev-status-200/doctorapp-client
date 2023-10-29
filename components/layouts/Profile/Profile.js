@@ -22,6 +22,7 @@ import { Experience, ExperienceEdit } from "./Experience";
 import Card from "@/components/shared/Cards/SecondaryCard";
 import SubMenu from "@/components/shared/SubMenu";
 import notificationComp from "@/functions/notificationComp";
+import PrimaryModal from "@/components/shared/Modal";
 
 const ProfileOverview = ({ data, setEdit }) => {
   return (
@@ -94,7 +95,14 @@ const ProfileOverview = ({ data, setEdit }) => {
 
 const EditProfile = ({ setEdit, data }) => {
   const [active, setActive] = useState(0);
+
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [message, setMessage] = useState(
+    "Are you sure you want to save the changes?"
+  );
+
+  const [show, setShow] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   React.useEffect(() => {
     if (data) {
@@ -107,41 +115,50 @@ const EditProfile = ({ setEdit, data }) => {
       dispatch({ type: "SET_SERVICES", payload: data.Services });
     }
   }, []);
-
+  
   const renderStep = () => {
     switch (active) {
       case 0:
-        return <MyAccountEdit onClick={submitForm} />;
+        return <MyAccountEdit onSubmit={onSubmit} />;
       case 1:
-        return <ClinicalInformationEdit onClick={submitForm} />;
+        return <ClinicalInformationEdit onSubmit={onSubmit} />;
       case 2:
-        return <ContentDetailsEdit onClick={submitForm} />;
+        return <ContentDetailsEdit onSubmit={onSubmit} />;
       case 3:
-        return <PricingEdit onClick={submitForm} />;
+        return <PricingEdit onSubmit={onSubmit} />;
       case 4:
-        return <ServicesEdit onClick={submitForm} />;
+        return <ServicesEdit onSubmit={onSubmit} />;
       case 5:
-        return <EducationEdit onClick={submitForm} />;
+        return <EducationEdit onSubmit={onSubmit} />;
       case 6:
-        return <ExperienceEdit onClick={submitForm} />;
+        return <ExperienceEdit onSubmit={onSubmit} />;
 
       default:
         return null;
     }
   };
 
-  const submitForm = (e) => {
-    e.preventDefault();
+  const onSubmit = (e) =>{
+    e.preventDefault()
+    setShow(true)
+  }
+
+  const onClick = () => {
+    setLoading(true);
     try {
       axios
         .post(process.env.NEXT_PUBLIC_DOCTOR_PROFILE_UPDATE, state)
         .then((r) => {
           if (r.data.status === "success") {
+            setMessage(
+              "Please wait! Your changes are being save and then you will be redirected to your profile dashboard."
+            );
             notificationComp(
               "Profile updated!",
-              "Your changes are saved.",
+              "Your changes are being saved.",
               "green"
             );
+            window.location.reload();
           } else {
             notificationComp("Error!", "Profile not updated!", "red");
           }
@@ -179,6 +196,17 @@ const EditProfile = ({ setEdit, data }) => {
         <SubMenu menu={profileMenu} setStep={setActive} step={active} />
         <Row>{React.cloneElement(renderStep(), { state, dispatch })}</Row>
       </div>
+      <PrimaryModal
+        loading={loading}
+        setShow={setShow}
+        title={"Save Changes?"}
+        primary_text={"Yes"}
+        show={show}
+        onClick={onClick}
+        onPrimaryAction={onClick}
+      >
+        <p>{message}</p>
+      </PrimaryModal>
     </>
   );
 };

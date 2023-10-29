@@ -14,31 +14,31 @@ const ContentDetails = ({ data }) => {
               <label>
                 Address Line 1<small>*</small>:
               </label>
-              <p>{data.address1? data.address1 : '-'}</p>
+              <p>{data.address1 ? data.address1 : "-"}</p>
             </span>
             <span>
               <label>
                 Address Line 2<small>*</small>:
               </label>
-              <p>{data.address2? data.address2 : '-'}</p>
+              <p>{data.address2 ? data.address2 : "-"}</p>
             </span>
             <span>
               <label>State/Province:</label>
-              <p>{data.state? data.state : '-'}</p>
+              <p>{data.state ? data.state : "-"}</p>
             </span>
             <span>
               <label>City:</label>
-              <p>{data.city? data.city : '-'}</p>
+              <p>{data.city ? data.city : "-"}</p>
             </span>
             <span>
               <label>
                 Country<small>*</small>:
               </label>
-              <p>{data.country? data.country : '-'}</p>
+              <p>{data.country ? data.country : "-"}</p>
             </span>
             <span>
               <label>Postal Code:</label>
-              <p>{data.postal? data.postal : '-'}</p>
+              <p>{data.postal ? data.postal : "-"}</p>
             </span>
           </div>
         </div>
@@ -82,7 +82,7 @@ const ContentDetails = ({ data }) => {
   );
 };
 
-const ContentDetailsEdit = ({ state, dispatch, onClick }) => {
+const ContentDetailsEdit = ({ state, dispatch, onSubmit }) => {
   const address1 = state.doctor.address1;
   const address2 = state.doctor.address2;
   const province = state.doctor.state;
@@ -103,11 +103,12 @@ const ContentDetailsEdit = ({ state, dispatch, onClick }) => {
   return (
     <Col md={11} className="m-auto justify-content-center mt-4">
       <Card title={"Clinic Information"}>
-        <Row className="m-3">
+        <form className="m-3 row" onSubmit={(e)=>{onSubmit(e)}}>
           <Col md={4}>
             <Form.Group>
               <Form.Label>Address Line.1</Form.Label>
               <Form.Control
+                required
                 onChange={(e) => handleChange("address1", e.target.value)}
                 value={address1}
                 className="custom-focus"
@@ -121,6 +122,7 @@ const ContentDetailsEdit = ({ state, dispatch, onClick }) => {
             <Form.Group>
               <Form.Label>Address Line.2</Form.Label>
               <Form.Control
+                required
                 onChange={(e) => handleChange("address2", e.target.value)}
                 value={address2}
                 className="custom-focus"
@@ -138,7 +140,7 @@ const ContentDetailsEdit = ({ state, dispatch, onClick }) => {
                 value={province}
                 className="custom-focus"
                 size="md"
-                type="email"
+                type="text"
                 placeholder="xyz@gmail.com"
               />
             </Form.Group>
@@ -178,18 +180,20 @@ const ContentDetailsEdit = ({ state, dispatch, onClick }) => {
                 value={postal}
                 className="custom-focus"
                 size="md"
-                type="email"
+                type="text"
                 placeholder="xyz@gmail.com"
               />
             </Form.Group>
             <div style={{ float: "right" }} className="p-3 mt-4">
-              <button onClick={onClick} className="btn-orange mx-2">
+              <button
+                className="btn-orange mx-2"
+              >
                 Save
               </button>
               <button className="btn-orange-light mx-2">Cancel</button>
             </div>
           </Col>
-        </Row>
+        </form>
       </Card>
     </Col>
   );

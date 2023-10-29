@@ -153,7 +153,9 @@ const FacilityInfoEdit = () => {
         />
       </div>
       <div style={{ float: "right" }} className="p-3 mt-4">
-        <button className="btn-orange mx-2">Save</button>
+        <button className="btn-orange mx-2" onClick={onClick(true)}>
+          Save
+        </button>
         <button className="btn-orange-light mx-2">Cancel</button>
       </div>
     </Col>

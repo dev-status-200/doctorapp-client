@@ -1,7 +1,15 @@
-import { Modal } from "react-bootstrap";
-import React,{memo} from "react";
+import { Modal, Spinner } from "react-bootstrap";
+import React, { memo } from "react";
 
-const PrimaryModal = ({ title, children, primary_text, show, setShow, onClick }) => {
+const PrimaryModal = ({
+  title,
+  children,
+  primary_text,
+  show,
+  setShow,
+  onClick,
+  loading,
+}) => {
   return (
     <Modal centered show={show} onHide={setShow}>
       <Modal.Header closeButton>
@@ -11,10 +19,12 @@ const PrimaryModal = ({ title, children, primary_text, show, setShow, onClick })
       <Modal.Body>{children}</Modal.Body>
 
       <Modal.Footer>
-        <button onClick={onClick} className="btn-orange">{primary_text}</button>
+        <button disabled={loading} onClick={onClick} className="btn-orange">
+          {loading ? <Spinner size="sm" color="white" /> : primary_text}
+        </button>
       </Modal.Footer>
     </Modal>
   );
 };
 
-export default  memo(PrimaryModal);
+export default memo(PrimaryModal);

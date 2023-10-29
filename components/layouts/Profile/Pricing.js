@@ -8,14 +8,23 @@ import PrimaryModal from "@/components/shared/Modal";
 
 const Pricing = ({ data }) => {
   const displayPricings = data?.Pricings || [];
+  console.log(displayPricings);
   return (
     <>
-      {displayPricings === 0 ? (
+      {displayPricings.length === 0 ? (
+        <div className="form-container">
+          <div className="form-section">
+            <span>
+              <label>There are no prices added.</label>
+            </span>
+          </div>
+        </div>
+      ) : (
         <div className="form-container">
           <div className="form-section">
             {displayPricings.map((item, index) => {
               return (
-                <span>
+                <span key={index}>
                   <label>
                     {item.name}
                     <small>*</small>:
@@ -26,20 +35,12 @@ const Pricing = ({ data }) => {
             })}
           </div>
         </div>
-      ) : (
-        <div className="form-container">
-          <div className="form-section">
-            <span>
-              <label>There are no prices added.</label>
-            </span>
-          </div>
-        </div>
       )}
     </>
   );
 };
 
-const PricingEdit = ({ state, dispatch, onClick }) => {
+const PricingEdit = ({ state, dispatch, onSubmit }) => {
   const [show, setShow] = useState(false);
   const [newService, setNewService] = useState({ name: "", price: "" });
 
@@ -108,8 +109,13 @@ const PricingEdit = ({ state, dispatch, onClick }) => {
             )}
           </div>
         </Card>
-        <div className="mt-5">
-          <button onClick={onClick} className="btn-orange mx-2">
+        <div className="mt-5" style={{ float: "right" }}>
+          <button
+            onClick={(e) => {
+              onSubmit(e);
+            }}
+            className="btn-orange mx-2"
+          >
             Save
           </button>
           <button className="btn-orange-light mx-2">Cancel</button>
@@ -120,6 +126,7 @@ const PricingEdit = ({ state, dispatch, onClick }) => {
         title={"Add new service"}
         primary_text={"Add"}
         show={show}
+        loading={false}
         onClick={addService}
         onPrimaryAction={addService}
       >

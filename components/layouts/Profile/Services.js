@@ -158,7 +158,7 @@ const ServicesEdit = ({ state, dispatch, onClick }) => {
         </div>
       </Card>
       <div style={{ float: "right" }} className="p-3 mt-4">
-        <button onClick={onClick} className="btn-orange mx-2">
+        <button onClick={()=>{onClick(true)}}  className="btn-orange mx-2">
           Save
         </button>
         <button className="btn-orange-light mx-2">Cancel</button>
