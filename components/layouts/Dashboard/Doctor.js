@@ -25,7 +25,6 @@ const Doctor = () => {
 
   async function getUsername(){
     let tempUser = await Cookies.get("username");
-    console.log(tempUser);
     setUsername(tempUser)
   }
   

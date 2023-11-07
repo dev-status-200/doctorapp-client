@@ -22,6 +22,7 @@ const initialState = {
   pricing: [],
   services: [],
   specialization: [],
+  specialities: [],
   delete: {
     clinic: [],
     services: [],
@@ -38,6 +39,8 @@ const isObjectEmpty = (obj) => {
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
+    case "SET_ALL":
+      return { ...state, ...action.payload };
     case "SET_CLINIC":
       if (!isObjectEmpty(action.payload)) {
         return { ...state, clinic: action.payload };

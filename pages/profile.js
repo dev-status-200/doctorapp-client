@@ -35,7 +35,7 @@ export async function getServerSideProps({ req, res }) {
     return {
       props: {
         sessionData: sessionRequest,
-        data: profileData.result,
+        data: {...profileData.result, specialities:profileData.specialities},
         loading: false,
       },
     };

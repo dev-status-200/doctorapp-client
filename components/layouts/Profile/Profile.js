@@ -40,12 +40,7 @@ const ProfileOverview = ({ data, setEdit }) => {
           <button className="btn-orange-light mx-3">
             <HiOutlineArrowRightOnRectangle size={20} /> Logout
           </button>
-          <button
-            onClick={() => {
-              setEdit(true);
-            }}
-            className="btn-orange"
-          >
+          <button onClick={() => setEdit(true)} className="btn-orange">
             Edit Profile
           </button>
         </Col>
@@ -106,13 +101,24 @@ const EditProfile = ({ setEdit, data }) => {
 
   React.useEffect(() => {
     if (data) {
-      dispatch({ type: "SET_ACCOUNT", payload: data });
-      dispatch({ type: "SET_CLINIC", payload: data.Clinics });
-      dispatch({ type: "SET_EDUCATION", payload: data.Education });
-      dispatch({ type: "SET_EXPERIENCE", payload: data.Experiences });
-      dispatch({ type: "SET_PRICING", payload: data.Pricings });
-      dispatch({ type: "SET_SPECIALIZATION", payload: data.Specializations });
-      dispatch({ type: "SET_SERVICES", payload: data.Services });
+      dispatch({ type: "SET_ALL", payload: {
+        ...state,
+        specialities:data.specialities,
+        clinic:data.Clinics,
+        education:data.Education,
+        experience:data.Experiences,
+        doctor:data,
+        pricing:data.Pricings,
+        specialization:data.Specializations,
+        services:data.Services
+      } });
+      // dispatch({ type: "SET_ACCOUNT", payload: data });
+      // dispatch({ type: "SET_CLINIC", payload: data.Clinics });
+      // dispatch({ type: "SET_EDUCATION", payload: data.Education });
+      // dispatch({ type: "SET_EXPERIENCE", payload: data.Experiences });
+      // dispatch({ type: "SET_PRICING", payload: data.Pricings });
+      // dispatch({ type: "SET_SPECIALIZATION", payload: data.Specializations });
+      // dispatch({ type: "SET_SERVICES", payload: data.Services });
     }
   }, []);
   
@@ -169,45 +175,45 @@ const EditProfile = ({ setEdit, data }) => {
   };
 
   return (
-    <>
-      <div className="container-fluid mt-2">
-        <div className="top-section mb-4 mt-4">
-          <Row>
-            <Col md={6}>
-              <h4>
-                <HiChevronLeft
-                  style={{ cursor: "pointer" }}
-                  onClick={() => {
-                    setEdit(false);
-                  }}
-                  fontSize={30}
-                />
-                <strong className="mx-2">Profile Overview</strong>
-              </h4>
-            </Col>
-            <Col md={6} className="text-end">
-              <button className="btn-orange-light mx-3">
-                <HiOutlineArrowRightOnRectangle size={20} /> Logout
-              </button>
-            </Col>
-          </Row>
-        </div>
-
-        <SubMenu menu={profileMenu} setStep={setActive} step={active} />
-        <Row>{React.cloneElement(renderStep(), { state, dispatch })}</Row>
+  <>
+    <div className="container-fluid mt-2">
+      <div className="top-section mb-4 mt-4">
+        <Row>
+          <Col md={6}>
+            <h4>
+              <HiChevronLeft
+                style={{ cursor: "pointer" }}
+                onClick={() => {
+                  setEdit(false);
+                }}
+                fontSize={30}
+              />
+              <strong className="mx-2">Profile Overview</strong>
+            </h4>
+          </Col>
+          <Col md={6} className="text-end">
+            <button className="btn-orange-light mx-3">
+              <HiOutlineArrowRightOnRectangle size={20} /> Logout
+            </button>
+          </Col>
+        </Row>
       </div>
-      <PrimaryModal
-        loading={loading}
-        setShow={setShow}
-        title={"Save Changes?"}
-        primary_text={"Yes"}
-        show={show}
-        onClick={onClick}
-        onPrimaryAction={onClick}
-      >
-        <p>{message}</p>
-      </PrimaryModal>
-    </>
+
+      <SubMenu menu={profileMenu} setStep={setActive} step={active} />
+      <Row>{React.cloneElement(renderStep(), { state, dispatch })}</Row>
+    </div>
+    <PrimaryModal
+      loading={loading}
+      setShow={setShow}
+      title={"Save Changes?"}
+      primary_text={"Yes"}
+      show={show}
+      onClick={onClick}
+      onPrimaryAction={onClick}
+    >
+      <p>{message}</p>
+    </PrimaryModal>
+  </>
   );
 };
 
@@ -216,5 +222,5 @@ const MemoizedEditProfile = React.memo(EditProfile);
 
 export {
   MemoizedProfileOverview as ProfileOverview,
-  MemoizedEditProfile as EditProfile,
+  MemoizedEditProfile as EditProfile
 };

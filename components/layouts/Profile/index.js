@@ -13,13 +13,13 @@ const Profile = ({ data, sessionData }) => {
   }, []);
 
   return (
-    <>
-      {!edit ? (
-        <ProfileOverview data={data} setEdit={setEdit} />
-      ) : (
-        <EditProfile data={data} setEdit={setEdit} />
-      )}
-    </>
+  <>
+    {!edit ? (
+      <ProfileOverview data={data} setEdit={setEdit} />
+    ) : (
+      <EditProfile data={data} setEdit={setEdit} />
+    )}
+  </>
   );
 };
 

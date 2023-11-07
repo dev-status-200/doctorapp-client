@@ -1,6 +1,7 @@
 import React, { memo } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
@@ -35,14 +36,14 @@ const Header = () => {
         <Navbar.Collapse className="justify-content-end">
           <Nav className="mr-auto">
             {navLinks.map((link, i) => (
-              <Nav.Link
+              <Link
                 key={i}
                 href={link.href}
                 style={{ textDecoration: "none", color: "white" }}
-                className={router.route === link.href ? "active-link" : ""}
+                className={router.route === link.href ? "active-link mx-3" : "mx-3"}
               >
                 {link.label}
-              </Nav.Link>
+              </Link>
             ))}
           </Nav>
           <div className="d-flex align-items-center">
