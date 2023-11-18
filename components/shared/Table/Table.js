@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Spinner } from "react-bootstrap";
+import { Spinner, Table } from "react-bootstrap";
 import TableFooter from "./TableFooter";
 
 const TableCom = (props) => {
@@ -21,7 +21,7 @@ const TableCom = (props) => {
     <>
       {data.length > 0 ? (
         <div className="table-container">
-          <table striped bordered hover className="table">
+          <Table bordered className="table">
             <thead>
               <tr>
                 {props.cols.map((ele, index) => {
@@ -42,7 +42,7 @@ const TableCom = (props) => {
               })}
               <tr></tr>
             </tbody>
-          </table>
+          </Table>
         </div>
       ) : (
         <div className="table-spinner">
