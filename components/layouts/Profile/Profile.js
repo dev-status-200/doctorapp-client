@@ -23,6 +23,7 @@ import Card from "@/components/shared/Cards/SecondaryCard";
 import SubMenu from "@/components/shared/SubMenu";
 import notificationComp from "@/functions/notificationComp";
 import PrimaryModal from "@/components/shared/Modal";
+import LocationMap from "./LocationMap";
 
 const ProfileOverview = ({ data, setEdit }) => {
   return (
@@ -52,7 +53,7 @@ const ProfileOverview = ({ data, setEdit }) => {
           </Card>
         </Col>
         <Col md={12} xl={4} className="mt-3">
-          <Card title={"Clinical Information"}>
+          <Card title={"Clinic Information"}>
             <ClinicalInformation data={data} />
           </Card>
         </Col>
@@ -112,13 +113,6 @@ const EditProfile = ({ setEdit, data }) => {
         specialization:data.Specializations,
         services:data.Services
       } });
-      // dispatch({ type: "SET_ACCOUNT", payload: data });
-      // dispatch({ type: "SET_CLINIC", payload: data.Clinics });
-      // dispatch({ type: "SET_EDUCATION", payload: data.Education });
-      // dispatch({ type: "SET_EXPERIENCE", payload: data.Experiences });
-      // dispatch({ type: "SET_PRICING", payload: data.Pricings });
-      // dispatch({ type: "SET_SPECIALIZATION", payload: data.Specializations });
-      // dispatch({ type: "SET_SERVICES", payload: data.Services });
     }
   }, []);
   
@@ -138,6 +132,8 @@ const EditProfile = ({ setEdit, data }) => {
         return <EducationEdit onSubmit={onSubmit} />;
       case 6:
         return <ExperienceEdit onSubmit={onSubmit} />;
+      case 7:
+        return <LocationMap onSubmit={onSubmit} />;
 
       default:
         return null;
