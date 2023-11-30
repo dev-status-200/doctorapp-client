@@ -1,6 +1,4 @@
-@import "loginStyles.scss";
-@import "profileStyles.scss";
-
+//===Animation===//
 @import "./shared/chartStyles.scss";
 @import "./shared/formStyles.scss";
 @import "./shared/gridStyles.scss";
@@ -8,8 +6,12 @@
 @import "./shared/tableStyles.scss";
 @import "./shared/headerStyles.scss";
 @import "./shared/cardStyles.scss";
-@import "./shared/dashboard/doctorStyles.scss";
-
+//===Layout===//
+@import "./layout/auth/loginStyles.scss";
+@import "./layout/dashboard/adminStyles.scss";
+@import "./layout/dashboard/doctorStyles.scss";
+@import "./layout/profile/profileStyles.scss";
+//===Animation===//
 @import "./animations/fadeIn.scss";
 
 .fw-100{ font-weight:100; }
