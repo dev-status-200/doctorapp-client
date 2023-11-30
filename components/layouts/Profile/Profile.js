@@ -3,7 +3,7 @@ import { reducer, initialState } from "./profileReducer";
 import axios from "axios";
 
 import { Row, Col } from "react-bootstrap";
-import { HiOutlineArrowRightOnRectangle, HiChevronLeft } from "react-icons/hi2";
+import { HiChevronLeft } from "react-icons/hi2";
 
 import { profileMenu } from "@/utils/Menu";
 
@@ -24,6 +24,7 @@ import SubMenu from "@/components/shared/SubMenu";
 import notificationComp from "@/functions/notificationComp";
 import PrimaryModal from "@/components/shared/Modal";
 import LocationMap from "./LocationMap";
+import LogoutBtn from "@/components/shared/Button/LogoutBtn";
 
 const ProfileOverview = ({ data, setEdit }) => {
   return (
@@ -38,9 +39,7 @@ const ProfileOverview = ({ data, setEdit }) => {
           </h4>
         </Col>
         <Col md={6} className="text-end">
-          <button className="btn-orange-light mx-3">
-            <HiOutlineArrowRightOnRectangle size={20} /> Logout
-          </button>
+          <LogoutBtn/>
           <button onClick={() => setEdit(true)} className="btn-orange">
             Edit Profile
           </button>
@@ -188,9 +187,7 @@ const EditProfile = ({ setEdit, data }) => {
             </h4>
           </Col>
           <Col md={6} className="text-end">
-            <button className="btn-orange-light mx-3">
-              <HiOutlineArrowRightOnRectangle size={20} /> Logout
-            </button>
+            <LogoutBtn/>
           </Col>
         </Row>
       </div>
