@@ -23,7 +23,7 @@ import Card from "@/components/shared/Cards/SecondaryCard";
 import SubMenu from "@/components/shared/SubMenu";
 import notificationComp from "@/functions/notificationComp";
 import PrimaryModal from "@/components/shared/Modal";
-import LocationMap from "./LocationMap";
+import LocationMap from "../../shared/Map";
 import LogoutBtn from "@/components/shared/Button/LogoutBtn";
 
 const ProfileOverview = ({ data, setEdit }) => {

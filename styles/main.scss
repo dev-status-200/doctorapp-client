@@ -6,6 +6,7 @@
 @import "./shared/tableStyles.scss";
 @import "./shared/headerStyles.scss";
 @import "./shared/cardStyles.scss";
+@import "./shared/mapStyles.scss";
 //===Layout===//
 @import "./layout/auth/loginStyles.scss";
 @import "./layout/dashboard/adminStyles.scss";
@@ -106,7 +107,20 @@
     }
   }
 
+  .custom-focus:focus-within {
+    box-shadow: 0 0 0 0.2rem rgba(255, 96, 0, 0.25) !important; 
+    border-color: #f60 !important;  
+    background-color: white !important;    
+  }
+
   .custom-focus:focus {
     box-shadow: 0 0 0 0.2rem rgba(255, 96, 0, 0.25) !important; 
     border-color: #f60 !important;  
+    background-color: white !important;    
+  }
+  
+  .custom-focus:hover {
+    box-shadow: 0 0 0 0.2rem rgba(255, 96, 0, 0.25) !important; 
+    border-color: #f60 !important;  
+    background-color: white !important;
   }

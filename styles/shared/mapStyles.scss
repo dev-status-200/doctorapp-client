@@ -1,0 +1,17 @@
+.map-search{
+    position: absolute !important;
+    max-width: 20% !important;
+}
+
+.map-search ul{
+    background-color: white;
+
+    li{
+        text-decoration: none;
+        list-style: none;
+        cursor: pointer;
+        &:hover{
+            color: #f60;
+        }
+    }
+}
