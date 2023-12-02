@@ -12,6 +12,7 @@ const initialState = {
     address2: "",
     state: "",
     city: "",
+    image:"",
     country: "",
     bio: "",
     postal: "",

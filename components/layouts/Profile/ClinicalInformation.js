@@ -6,8 +6,8 @@ import { Col, Row, Form } from "react-bootstrap";
 import { HiPlusCircle, HiXCircle } from "react-icons/hi2";
 import { Image } from "antd";
 
-import Card from "@/components/shared/Cards/SecondaryCard";
-import UploadFile from "@/components/shared/Form/UploadFile";
+import { Card } from "@/components/shared/Cards/SecondaryCard";
+import UploadImage from "@/components/shared/Form/UploadImage";
 import IconButton from "@/components/shared/Form/IconButton";
 
 const ClinicalInformation = ({ data }) => {
@@ -157,7 +157,6 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
 
   const removeClinic = (index, id) => {
     const updatedClinics = [...clinics];
-    console.log(id, index);
     if (id != undefined || id != "") {
       state.delete.clinic.push(id);
       console.log(state.delete.clinic);
@@ -201,7 +200,7 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
                     <Form.Label>Clinic Name</Form.Label>
                     <Form.Control
                       required
-                      value={clinic.name||''}
+                      value={clinic.name || ""}
                       onChange={(e) =>
                         handleChange(index, "name", e.target.value)
                       }
@@ -217,7 +216,7 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
                     <Form.Label>Clinic Address</Form.Label>
                     <Form.Control
                       required
-                      value={clinic.address||''}
+                      value={clinic.address || ""}
                       onChange={(e) =>
                         handleChange(index, "address", e.target.value)
                       }
@@ -233,7 +232,7 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
                     <Form.Label>Clinic Email</Form.Label>
                     <Form.Control
                       required
-                      value={clinic.email||''}
+                      value={clinic.email || ""}
                       onChange={(e) =>
                         handleChange(index, "email", e.target.value)
                       }
@@ -248,7 +247,7 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
                   <Form.Group>
                     <Form.Label>Clinic Images</Form.Label>
 
-                    <UploadFile
+                    <UploadImage
                       setUploadedImgURL={(imageUrl) =>
                         addImage(index, imageUrl)
                       }

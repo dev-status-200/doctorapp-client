@@ -2,7 +2,9 @@ import React from "react";
 
 import { TextArea } from "@/components/shared/Form/TextArea";
 import { Col, Form, Row } from "react-bootstrap";
-import Card from "@/components/shared/Cards/SecondaryCard";
+import { Card } from "@/components/shared/Cards/SecondaryCard";
+import { Avatar } from "antd";
+import UploadProfile from "@/components/shared/Form/UploadProfile";
 
 const MyAccount = ({ data }) => {
   return (
@@ -43,6 +45,16 @@ const MyAccount = ({ data }) => {
           </div>
 
           <div className="form-section">
+            <div className="mb-5">
+              <label>Profile Pic:</label>
+              {data.image ? (
+                <Avatar src={data.image} />
+              ) : (
+                <Avatar size={50}>
+                  <h2>{data.firstName?.charAt(0).toUpperCase()}</h2>
+                </Avatar>
+              )}
+            </div>
             <label>
               About me (Bio)<small>*</small>:
             </label>
@@ -100,7 +112,7 @@ const MyAccount = ({ data }) => {
 };
 
 const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
-  const { bio, firstName, lastName, email, gender, dob } = state.doctor;
+  const { bio, firstName, lastName, email, gender, dob, image } = state.doctor;
 
   const handleChange = (field, value) => {
     dispatch({
@@ -113,11 +125,16 @@ const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
     <Col md={11} className="m-auto justify-content-center mt-4">
       <Card title={"Education"}>
         <Row className="m-3">
+          <Col md={12}>
+            <div>
+              <UploadProfile saveImg={handleChange} image={image} />
+            </div>
+          </Col>
           <Col md={4}>
             <Form.Group>
               <Form.Label>First name</Form.Label>
               <Form.Control
-                value={firstName||''}
+                value={firstName || ""}
                 onChange={(e) => handleChange("firstName", e.target.value)}
                 className="custom-focus"
                 size="md"
@@ -130,7 +147,7 @@ const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
             <Form.Group>
               <Form.Label>Last name</Form.Label>
               <Form.Control
-                value={lastName||''}
+                value={lastName || ""}
                 onChange={(e) => handleChange("lastName", e.target.value)}
                 className="custom-focus"
                 size="md"
@@ -143,7 +160,7 @@ const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
             <Form.Group>
               <Form.Label>Email</Form.Label>
               <Form.Control
-                value={email||''}
+                value={email || ""}
                 onChange={(e) => handleChange("email", e.target.value)}
                 className="custom-focus"
                 size="md"
@@ -157,7 +174,7 @@ const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
             <Form.Group>
               <Form.Label>D.O.B</Form.Label>
               <Form.Control
-                value={dob||''}
+                value={dob || ""}
                 onChange={(e) => handleChange("dob", e.target.value)}
                 className="custom-focus"
                 size="md"
@@ -170,7 +187,7 @@ const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
             <Form.Group>
               <Form.Label>Gender</Form.Label>
               <Form.Control
-                value={gender||''}
+                value={gender || ""}
                 onChange={(e) => handleChange("gender", e.target.value)}
                 className="custom-focus"
                 size="md"
@@ -181,10 +198,10 @@ const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
           </Col>
         </Row>
         <TextArea
-          value={bio||''}
+          value={bio || ""}
           title={"About Me"}
           onChange={(e) => handleChange("bio", e.target.value)}
-          description={bio||''}
+          description={bio || ""}
           subtitle={"(Write down your bio)"}
         />
         <div style={{ float: "right" }} className="p-3">

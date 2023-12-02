@@ -118,6 +118,47 @@
   }
 }
 
+.upload-container-sm{
+  border-radius: 100px;
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #ccc;
+  padding: 20px 0;
+  position: relative;
+
+  .upload-btn {
+    color: rgb(210, 109, 41);
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    //   color: #333;
+
+    &:focus {
+      outline: none;
+    }
+
+    .plus-icon {
+      background-color: rgb(210, 109, 41);
+      padding: 10px;
+      margin-right: 10px;
+      border-radius: 50%;
+      color: white;
+      font-size: 20px;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+}
+
 //===TagInputStyles===//
 .tag-input-container {
   width: 100%;

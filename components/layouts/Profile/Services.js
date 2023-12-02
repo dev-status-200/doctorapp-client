@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-import Card from "@/components/shared/Cards/SecondaryCard";
+import {Card} from "@/components/shared/Cards/SecondaryCard";
 import { Col, Form } from "react-bootstrap";
 
 import { HiX } from "react-icons/hi";

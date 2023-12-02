@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, memo } from "react";
 import axios from "axios";
 import { useGeolocated } from "react-geolocated";
 import mapboxgl, { Marker } from "mapbox-gl";
@@ -57,7 +57,7 @@ const LocationMap = () => {
     };
     if (!map) initializeMap({ setMap, mapContainer });
   }, [map, coords]);
-  console.log(selectedFeature)
+
   useEffect(() => {
     if (searchTerm.length > 4) {
       axios
@@ -139,4 +139,4 @@ const LocationMap = () => {
   );
 };
 
-export default LocationMap;
+export default memo(LocationMap);

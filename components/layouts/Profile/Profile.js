@@ -19,7 +19,7 @@ import { Services, ServicesEdit } from "./Services";
 import { Education, EducationEdit } from "./Education";
 import { Experience, ExperienceEdit } from "./Experience";
 
-import Card from "@/components/shared/Cards/SecondaryCard";
+import {Card, ScrollerCard} from "@/components/shared/Cards/SecondaryCard";
 import SubMenu from "@/components/shared/SubMenu";
 import notificationComp from "@/functions/notificationComp";
 import PrimaryModal from "@/components/shared/Modal";
@@ -47,41 +47,41 @@ const ProfileOverview = ({ data, setEdit }) => {
       </Row>
       <Row className="m-4">
         <Col md={12} xl={8} className="mt-3">
-          <Card title={"My Account"}>
+          <ScrollerCard title={"My Account"}>
             <MyAccount data={data} />
-          </Card>
+          </ScrollerCard>
         </Col>
         <Col md={12} xl={4} className="mt-3">
-          <Card title={"Clinic Information"}>
+          <ScrollerCard title={"Clinic Information"}>
             <ClinicalInformation data={data} />
-          </Card>
+          </ScrollerCard>
         </Col>
       </Row>
       <Row className="m-4">
         <Col lg={12} xl={4} className="mt-3">
-          <Card title={"Content Details"}>
+          <ScrollerCard title={"Content Details"}>
             <ContentDetails data={data} />
-          </Card>
+          </ScrollerCard>
         </Col>
         <Col lg={12} xl={4} className="mt-3">
-          <Card title={"Pricing"}>
+          <ScrollerCard title={"Pricing"}>
             <Pricing data={data} />
-          </Card>
+          </ScrollerCard>
         </Col>
         <Col lg={12} xl={4} className="mt-3">
-          <Card title={"Service & Specialization"}>
+          <ScrollerCard title={"Service & Specialization"}>
             <Services data={data} />
-          </Card>
+          </ScrollerCard>
         </Col>
         <Col lg={12} xl={4} className="mt-3">
-          <Card title={"Education"}>
+          <ScrollerCard title={"Education"}>
             <Education data={data} />
-          </Card>
+          </ScrollerCard>
         </Col>
         <Col lg={12} xl={4} className="mt-3">
-          <Card title={"Experience"}>
+          <ScrollerCard title={"Experience"}>
             <Experience data={data} />
-          </Card>
+          </ScrollerCard>
         </Col>
       </Row>
     </div>

@@ -11,4 +11,22 @@ const Card = ({ title, children, size }) => {
   );
 };
 
-export default  memo(Card);
+const ScrollerCard = ({ title, children, size }) => {
+  return (
+    <div className={size==='lg'?"scroller-card-sm":"scroller-card"}>
+      <div className="card-header-secondary">
+        {title}
+      </div>
+      <div className="card-content">{children}</div>
+    </div>
+  );
+};
+
+const MemoizedCard = React.memo(Card);
+const MemoizedScrollerCard = React.memo(ScrollerCard);
+
+export {
+  MemoizedCard as Card,
+  MemoizedScrollerCard as ScrollerCard,
+};
+

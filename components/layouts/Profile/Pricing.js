@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 import { Col, Form } from "react-bootstrap";
 
-import Card from "@/components/shared/Cards/SecondaryCard";
+import {Card} from "@/components/shared/Cards/SecondaryCard";
 import PrimaryModal from "@/components/shared/Modal";
 
 const Pricing = ({ data }) => {

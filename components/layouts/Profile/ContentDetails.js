@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Col, Row, Form } from "react-bootstrap";
+import { Col, Form } from "react-bootstrap";
 
-import Card from "@/components/shared/Cards/SecondaryCard";
+import {Card} from "@/components/shared/Cards/SecondaryCard";
 
 const ContentDetails = ({ data }) => {
   return (
