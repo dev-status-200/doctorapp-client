@@ -1,10 +1,10 @@
 import React,{memo} from 'react'
 import Doctor from './Doctor'
 
-const Dashboard = () => {
+const Dashboard = ({appointments}) => {
   return (
     <>
-      <Doctor/>
+      <Doctor appointments={appointments}/>
     </>
   )
 }

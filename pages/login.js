@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Cookies from 'cookies';
 import { getProviders, signIn } from "next-auth/react";
+
 import Login from '@/components/layouts/Auth/Login';
 import verifyToken from '@/apis/verifyToken';
 
