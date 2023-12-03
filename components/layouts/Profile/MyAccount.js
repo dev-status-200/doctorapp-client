@@ -48,7 +48,7 @@ const MyAccount = ({ data }) => {
             <div className="mb-5">
               <label>Profile Pic:</label>
               {data.image ? (
-                <Avatar src={data.image} />
+                <Avatar size={100} src={data.image} />
               ) : (
                 <Avatar size={50}>
                   <h2>{data.firstName?.charAt(0).toUpperCase()}</h2>
@@ -123,7 +123,7 @@ const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
 
   return (
     <Col md={11} className="m-auto justify-content-center mt-4">
-      <Card title={"Education"}>
+      <Card title={"My Account"}>
         <Row className="m-3">
           <Col md={12}>
             <div>

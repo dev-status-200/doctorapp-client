@@ -126,6 +126,8 @@ const PricingEdit = ({ state, dispatch, onSubmit }) => {
         title={"Add new service"}
         primary_text={"Add"}
         show={show}
+        backdrop={'none'}
+        keyboard={true}
         loading={false}
         onClick={addService}
         onPrimaryAction={addService}

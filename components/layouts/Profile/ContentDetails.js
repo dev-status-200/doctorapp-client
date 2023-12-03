@@ -102,7 +102,7 @@ const ContentDetailsEdit = ({ state, dispatch, onSubmit }) => {
 
   return (
     <Col md={11} className="m-auto justify-content-center mt-4">
-      <Card title={"Clinic Information"}>
+      <Card title={"Contact Detail"}>
         <form className="m-3 row" onSubmit={(e)=>{onSubmit(e)}}>
           <Col md={4}>
             <Form.Group>

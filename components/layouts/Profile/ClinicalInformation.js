@@ -50,50 +50,52 @@ const ClinicalInformation = ({ data }) => {
           {displayClinicInfo.map((item, index) => {
             return (
               <div key={index} className="form-container">
-                <div key={item.name} className="form-section">
-                  <span>
-                    <label>
-                      Clinic Name<small>*</small>:
-                    </label>
-                    <p>{item.name ? item.name : "-"}</p>
-                  </span>
-                  <span>
-                    <label>
-                      Clinic Address<small>*</small>:
-                    </label>
-                    <p>{item.address ? item.address : "-"}</p>
-                  </span>
-                  <span>
-                    <label>
-                      Clinic Email<small>*</small>:
-                    </label>
-                    <p>{item.email ? item.email : "-"}</p>
-                  </span>
+                {item.active === "1" && (
+                  <div key={item.name} className="form-section">
+                    <span>
+                      <label>
+                        Clinic Name<small>*</small>:
+                      </label>
+                      <p>{item.name ? item.name : "-"}</p>
+                    </span>
+                    <span>
+                      <label>
+                        Clinic Address<small>*</small>:
+                      </label>
+                      <p>{item.address ? item.address : "-"}</p>
+                    </span>
+                    <span>
+                      <label>
+                        Clinic Email<small>*</small>:
+                      </label>
+                      <p>{item.email ? item.email : "-"}</p>
+                    </span>
 
-                  <>
-                    <label>Clinic Image:</label>
-                    {item.images === null || item.images === "" ? (
-                      <div key={index} className="m-4">
-                        <HiOutlineSquaresPlus size={35} /> No images added yet,
-                        please add the images.
-                      </div>
-                    ) : (
-                      <div className="scroll-div">
-                        {item.images.map((img, i) => (
-                          <Image
-                            key={i}
-                            className="p-1"
-                            style={{ borderRadius: 10 }}
-                            width={250}
-                            height={150}
-                            alt="clinic-img"
-                            src={img}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </>
-                </div>
+                    <>
+                      <label>Clinic Image:</label>
+                      {item.images === null || item.images === "" ? (
+                        <div key={index} className="m-4">
+                          <HiOutlineSquaresPlus size={35} /> No images added
+                          yet, please add the images.
+                        </div>
+                      ) : (
+                        <div className="scroll-div">
+                          {item.images.map((img, i) => (
+                            <Image
+                              key={i}
+                              className="p-1"
+                              style={{ borderRadius: 10 }}
+                              width={250}
+                              height={150}
+                              alt="clinic-img"
+                              src={img}
+                            />
+                          ))}
+                        </div>
+                      )}
+                    </>
+                  </div>
+                )}
               </div>
             );
           })}
@@ -115,6 +117,7 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
       address: "",
       email: "",
       images: "",
+      active: "0",
       DoctorId: id,
     };
     dispatch({
@@ -170,6 +173,16 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
     });
   };
 
+  const setPrimaryClinic = (id, index) => {
+    const updatedClinics = clinics.map((clinic, i) => ({
+      ...clinic,
+      active: i === index && clinic.id === id ? 1 : 0,
+    }));
+
+    dispatch({ type: "SET_CLINIC", payload: updatedClinics });
+    setClinics(updatedClinics);
+  };
+
   return (
     <Col md={11} className="m-auto justify-content-center mt-4">
       <Card title={"Clinic Information"}>
@@ -181,19 +194,32 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
           {clinics.map((clinic, index) => {
             return (
               <Row key={index} className="m-3">
-                {index !== 0 && (
-                  <div style={{ float: "right" }} className="mt-4">
-                    <IconButton
-                      onClick={() => {
-                        removeClinic(index, clinic.id);
-                      }}
-                      title={"Remove"}
-                      icon={
-                        <HiXCircle size={23} color="#db4855" className="mx-1" />
-                      }
-                    />
-                  </div>
-                )}
+                <Col className="mb-3" md={12}>
+                  {index !== 0 && (
+                    <div style={{ float: "right" }}>
+                      <IconButton
+                        onClick={() => {
+                          removeClinic(index, clinic.id);
+                        }}
+                        title={"Remove"}
+                        icon={
+                          <HiXCircle
+                            size={23}
+                            color="#db4855"
+                            className="mx-1"
+                          />
+                        }
+                      />
+                    </div>
+                  )}
+
+                  <Form.Check
+                    onChange={() => setPrimaryClinic(clinic.id, index)}
+                    type={"radio"}
+                    checked={clinic.active == 1}
+                    label={"Set as Primary"}
+                  />
+                </Col>
 
                 <Col md={4}>
                   <Form.Group>

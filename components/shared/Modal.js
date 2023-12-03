@@ -9,9 +9,11 @@ const PrimaryModal = ({
   setShow,
   onClick,
   loading,
+  backdrop,
+  keyboard
 }) => {
   return (
-    <Modal centered show={show} onHide={setShow}>
+    <Modal keyboard={keyboard} backdrop={backdrop} centered show={show} onHide={setShow}>
       <Modal.Header closeButton>
         <Modal.Title style={{ color: "#f10" }}>{title}</Modal.Title>
       </Modal.Header>

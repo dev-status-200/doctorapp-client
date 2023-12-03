@@ -23,7 +23,7 @@ const UploadProfile = ({ image, saveImg }) => {
           .then((resp) => resp.json())
           .then((data) => {
             setImgUrl(data.url);
-            saveImg("image", imgUrl);
+            saveImg("image", data.url);
             setLoading(false);
           });
       } catch (error) {
@@ -56,7 +56,7 @@ const UploadProfile = ({ image, saveImg }) => {
         action="https://run.mocky.io/v3/435e224c-44fb-4773-9faf-380c5e6a2188"
         onChange={handleChange}
       >
-        {(image !== "" || imgUrl !=="")  ? (
+        {image != null  ? (
           <Avatar
             src={image}
             alt="avatar"
