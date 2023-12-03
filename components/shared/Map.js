@@ -66,6 +66,7 @@ const LocationMap = () => {
       <Modal
         show={show}
         setShow={setShow}
+        footer={true}
         title={'Conirm your location'}
         backdrop={'static'}
         primary_text={"Save"}

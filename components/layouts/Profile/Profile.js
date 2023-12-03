@@ -203,6 +203,7 @@ const EditProfile = ({ setEdit, data }) => {
         setShow={setShow}
         backdrop={"none"}
         keyboard={true}
+        footer={true}
         title={"Save Changes?"}
         primary_text={"Yes"}
         show={show}

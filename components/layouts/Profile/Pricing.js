@@ -125,6 +125,7 @@ const PricingEdit = ({ state, dispatch, onSubmit }) => {
         setShow={setShow}
         title={"Add new service"}
         primary_text={"Add"}
+        footer={true}
         show={show}
         backdrop={'none'}
         keyboard={true}
