@@ -1,20 +1,16 @@
 import React, { useRef, useEffect, useState, memo } from "react";
-import axios from "axios";
 import { useGeolocated } from "react-geolocated";
 import mapboxgl, { Marker } from "mapbox-gl";
 
-import { Input } from "antd";
-import { SearchOutlined } from "@ant-design/icons";
 import "mapbox-gl/dist/mapbox-gl.css";
-import Modal from "./Modal";
 
-const LocationMap = () => {
+const LocationMap = ({ setLocation }) => {
   const mapContainer = useRef();
   const [map, setMap] = useState(null);
   const [coordinates, setCoordinates] = useState({ longitude: 0, latitude: 0 });
 
-  const [show, setShow] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const markerRef = useRef(null);
+
 
   const { coords, isGeolocationAvailable, isGeolocationEnabled } =
     useGeolocated({
@@ -28,7 +24,6 @@ const LocationMap = () => {
     if (coords) {
       coordinates.latitude = coords.latitude;
       coordinates.longitude = coords.longitude;
-      setShow(true)
     }
 
     const initializeMap = ({ setMap, mapContainer }) => {
@@ -43,8 +38,29 @@ const LocationMap = () => {
       map.on("load", async () => {
         setMap(map);
         map.resize();
-        new Marker().setLngLat( [coordinates.longitude, coordinates.latitude]).addTo(map);
+        new Marker()
+          .setLngLat([coordinates.longitude, coordinates.latitude])
+          .addTo(map);
       });
+      map.on('click', (e) => {
+        // Remove previous marker if it exists
+        if (markerRef.current) {
+          markerRef.current.remove();
+        }
+  
+        // Access the coordinates from the click event
+        const coordinates = e.lngLat.toArray();
+        console.log(coordinates, 'coordinates');
+  
+        // Create a new marker at the clicked coordinates
+        const newMarker = new Marker().setLngLat(coordinates).addTo(map);
+        markerRef.current = newMarker;
+      });
+  
+      // Cleanup on component unmount
+      return () => {
+        map.remove();
+      };
     };
     if (!map) initializeMap({ setMap, mapContainer });
   }, [map, coords]);
@@ -52,29 +68,16 @@ const LocationMap = () => {
   return (
     <>
       <div
-        className="map"
         ref={(el) => (mapContainer.current = el)}
         style={{
           flex: 1,
           justifyContent: "center",
           alignItems: "center",
           alignSelf: "center",
-          width: "80vw",
+          maxWidth: "100%",
           height: "73.5vh",
         }}
       />
-      <Modal
-        show={show}
-        setShow={setShow}
-        footer={true}
-        title={'Conirm your location'}
-        backdrop={'static'}
-        primary_text={"Save"}
-        loading={loading}
-        keyboard={false}
-      >
-        <p>Is this your current location?</p>
-      </Modal>
     </>
   );
 };

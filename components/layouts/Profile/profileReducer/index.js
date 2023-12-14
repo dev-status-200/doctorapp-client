@@ -15,6 +15,7 @@ const initialState = {
     image:"",
     country: "",
     bio: "",
+    npi: "",
     postal: "",
     email: "",
     gender: "",

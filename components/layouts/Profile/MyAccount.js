@@ -50,8 +50,10 @@ const MyAccount = ({ data }) => {
               {data.image ? (
                 <Avatar size={100} src={data.image} />
               ) : (
-                <Avatar size={50}>
-                  <h2>{data.firstName?.charAt(0).toUpperCase()}</h2>
+                <Avatar size={100}>
+                  <>
+                  <h1 className="p-4">{data.firstName?.charAt(0).toUpperCase()}</h1>
+                  </>
                 </Avatar>
               )}
             </div>
@@ -112,7 +114,7 @@ const MyAccount = ({ data }) => {
 };
 
 const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
-  const { bio, firstName, lastName, email, gender, dob, image } = state.doctor;
+  const { bio, firstName, lastName, email, gender, dob, image,npi } = state.doctor;
 
   const handleChange = (field, value) => {
     dispatch({
@@ -180,6 +182,19 @@ const MyAccountEdit = ({ state, dispatch, onSubmit }) => {
                 size="md"
                 type="date"
                 placeholder="10-12-02"
+              />
+            </Form.Group>
+          </Col>
+          <Col md={4}>
+            <Form.Group>
+              <Form.Label>NPI</Form.Label>
+              <Form.Control
+                value={npi || ""}
+                onChange={(e) => handleChange("npi", e.target.value)}
+                className="custom-focus"
+                size="md"
+                type="text"
+                placeholder="NPI"
               />
             </Form.Group>
           </Col>

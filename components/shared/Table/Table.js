@@ -29,7 +29,7 @@ const TableCom = (props) => {
 
   return (
     <>
-      {data.length > 0 ? (
+      {data.length >= 1 && props.loading == false ? (
         <div className="table-container">
           <Table bordered className="table">
             <thead>
@@ -73,8 +73,12 @@ const TableCom = (props) => {
           </Table>
         </div>
       ) : (
-        <div className="table-spinner">
-          <Spinner animation="grow" variant="warning" />
+        <div className="table-spinner m-5">
+          {props.loading ? (
+            <Spinner color="blue" />
+          ) : (
+            <p>No records to show.</p>
+          )}
         </div>
       )}
 

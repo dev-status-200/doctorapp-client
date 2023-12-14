@@ -1,8 +1,10 @@
 import React from 'react'
 
+import Subscription from '@/components/layouts/Subscription/Subscription'
+
 const subscription = () => {
   return (
-    <div>subscription</div>
+    <div><Subscription/></div>
   )
 }
 
