@@ -112,8 +112,8 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
   const [clinics, setClinics] = useState(
     state.clinic.length > 0 ? state.clinic : [{}]
   );
-
-  const [location, setLocation] = useState({ latitude: "0", longitude: "0" });
+  const [obj, setObj] = useState({});
+  const [location, setLocation] = useState({ latitude: 0, longitude: 0 });
 
   const addMore = () => {
     const id = Cookies.get("id");
@@ -123,8 +123,8 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
       email: "",
       images: "",
       active: "0",
-      longitude: "0",
-      latitude: "0",
+      longitude: 0,
+      latitude: 0,
       DoctorId: id,
     };
     dispatch({
@@ -137,14 +137,25 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
   const handleChange = (index, field, value) => {
     const id = Cookies.get("id");
     const updatedClinics = [...clinics];
-
-    updatedClinics[index][field] = value;
-    updatedClinics[index]["DoctorId"] = id;
+      updatedClinics[index][field] = value;
+      updatedClinics[index]["DoctorId"] = id;
     setClinics(updatedClinics);
-
     dispatch({ type: "SET_CLINIC", payload: updatedClinics });
   };
 
+  const handleLocationSetup = (index, lat, long) =>{
+    const updatedClinics = [...clinics];
+    if(lat && long){
+      location.latitude = long
+      location.longitude = lat
+    }else{
+      location.latitude = 0
+      location.longitude = 0
+    }
+    setObj(updatedClinics[index])
+    setShow(true)
+  }
+  
   const addImage = (index, imageUrl) => {
     const updatedClinics = [...clinics];
 
@@ -189,7 +200,6 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
     dispatch({ type: "SET_CLINIC", payload: updatedClinics });
     setClinics(updatedClinics);
   };
-  
 
   return (
     <>
@@ -283,7 +293,9 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
                       <button
                         className="btn-orange"
                         type="button"
-                        onClick={() => setShow(true)}
+                        onClick={() =>
+                          handleLocationSetup(index, clinic.longitude, clinic.latitude)
+                        }
                       >
                         Add Clinic Location
                       </button>
@@ -353,10 +365,16 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
         backdrop={"none"}
         keyboard={false}
         loading={false}
-        onClick={null}
-        onPrimaryAction={null}
+        onClick={() => {
+          if (obj) {
+            obj.longitude = location.longitude;
+            obj.latitude = location.latitude;
+          }
+          setShow(false)
+        }}
+        onPrimaryAction={() => setShow(false)}
       >
-        <Map setLocation={setLocation}/>
+        <Map location={location} setLocation={setLocation} />
       </Modal>
     </>
   );

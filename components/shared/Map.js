@@ -4,26 +4,28 @@ import mapboxgl, { Marker } from "mapbox-gl";
 
 import "mapbox-gl/dist/mapbox-gl.css";
 
-const LocationMap = ({ setLocation }) => {
+const LocationMap = ({ setLocation, location }) => {
   const mapContainer = useRef();
   const [map, setMap] = useState(null);
   const [coordinates, setCoordinates] = useState({ longitude: 0, latitude: 0 });
 
   const markerRef = useRef(null);
 
-
-  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
-    useGeolocated({
-      positionOptions: {
-        enableHighAccuracy: true,
-      },
-      userDecisionTimeout: 5000,
-    });
+  const { coords } = useGeolocated({
+    positionOptions: {
+      enableHighAccuracy: true,
+    },
+    userDecisionTimeout: 5000,
+  });
 
   useEffect(() => {
-    if (coords) {
+    if (location.latitude === 0 && location.longitude === 0 && coords) {
       coordinates.latitude = coords.latitude;
       coordinates.longitude = coords.longitude;
+    }
+    if (location.latitude != 0 && location.longitude != 0) {
+      coordinates.latitude = location.latitude;
+      coordinates.longitude = location.longitude;
     }
 
     const initializeMap = ({ setMap, mapContainer }) => {
@@ -42,21 +44,21 @@ const LocationMap = ({ setLocation }) => {
           .setLngLat([coordinates.longitude, coordinates.latitude])
           .addTo(map);
       });
-      map.on('click', (e) => {
+      map.on("click", (e) => {
         // Remove previous marker if it exists
         if (markerRef.current) {
           markerRef.current.remove();
         }
-  
+
         // Access the coordinates from the click event
-        const coordinates = e.lngLat.toArray();
-        console.log(coordinates, 'coordinates');
-  
+        const coordinate = e.lngLat.toArray();
+        setLocation({ longitude: coordinate[0], latitude: coordinate[1] });
+
         // Create a new marker at the clicked coordinates
-        const newMarker = new Marker().setLngLat(coordinates).addTo(map);
+        const newMarker = new Marker().setLngLat(coordinate).addTo(map);
         markerRef.current = newMarker;
       });
-  
+
       // Cleanup on component unmount
       return () => {
         map.remove();
