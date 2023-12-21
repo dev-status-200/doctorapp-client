@@ -2,10 +2,9 @@ const profileMenu = [
     { id: 0, text: "My Account"},
     { id: 1, text: "Clinic Information" },
     { id: 2, text: "Contact Details"},
-    { id: 5, text: "Education"},
-    { id: 6, text: "Experiences"},
-    { id: 3, text: "Pricing"},
-    { id: 4, text: "Service & specialization"},
+    { id: 3, text: "Education"},
+    { id: 4, text: "Experiences"},
+    { id: 5, text: "Service & specialization"},
   ];
 
   const subscriptionMenu = [

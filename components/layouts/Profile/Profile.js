@@ -127,15 +127,11 @@ const EditProfile = ({ setEdit, data }) => {
       case 2:
         return <ContentDetailsEdit onSubmit={onSubmit} />;
       case 3:
-        return <PricingEdit onSubmit={onSubmit} />;
+        return  <EducationEdit onSubmit={onSubmit} />;
       case 4:
-        return <ServicesEdit onSubmit={onSubmit} />;
+        return<ExperienceEdit onSubmit={onSubmit} />;
       case 5:
-        return <EducationEdit onSubmit={onSubmit} />;
-      case 6:
-        return <ExperienceEdit onSubmit={onSubmit} />;
-      case 7:
-        return <LocationMap onSubmit={onSubmit} />;
+        return <ServicesEdit onSubmit={onSubmit} />;
 
       default:
         return null;
