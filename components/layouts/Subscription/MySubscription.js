@@ -4,9 +4,12 @@ import { Card } from "@/components/shared/Cards/SecondaryCard";
 import { Col, Row } from "react-bootstrap";
 import PrimaryModal from "@/components/shared/Modal";
 import { Checkbox } from "antd";
+import { TextArea } from "@/components/shared/Form/TextArea";
 
 const MySubscription = () => {
   const [show, setShow] = useState(false);
+  const [other, setOther] = useState(false);
+
   return (
     <>
       <Col md={11} className="m-auto justify-content-center mt-4">
@@ -92,7 +95,7 @@ const MySubscription = () => {
       </Col>
       <PrimaryModal
         setShow={setShow}
-        title={"Add new service"}
+        title={"Cancel Subscription"}
         primary_text={"Add"}
         footer={true}
         show={show}
@@ -103,23 +106,32 @@ const MySubscription = () => {
         onPrimaryAction={false}
       >
         <div className="">
-          <ul style={{listStyle:'none'}}>
-            <li>
-              <Checkbox />
-              I don't want it anymore
-            </li>
-            <li>
-              <Checkbox />
-              I don't want it anymore
-            </li>
-            <li>
-              <Checkbox />
-              I don't want it anymore
-            </li>
-            <li>
-              <Checkbox />
-              I don't want it anymore
-            </li>
+          <ul style={{ listStyle: "none" }}>
+            <div className="d-flex">
+              <li>
+                <Checkbox />
+              </li>
+              <p className="mt-1 mx-3">I don't want it anymore</p>
+            </div>
+            <div className="d-flex">
+              <li>
+                <Checkbox />
+              </li>
+              <p className="mt-1 mx-3">I'm not satisfied</p>
+            </div>
+            <div className="d-flex">
+              <li>
+                <Checkbox />
+              </li>
+              <p className="mt-1 mx-3">I don't want to sell</p>
+            </div>
+            <div className="d-flex">
+              <li>
+                <Checkbox onClick={()=>{setOther((prev)=>!prev)}}/>
+              </li>
+              <p className="mt-1 mx-3" >Other</p>
+            </div>
+            {other&&<TextArea/>}
           </ul>
         </div>
       </PrimaryModal>

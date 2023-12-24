@@ -23,8 +23,7 @@ export async function getServerSideProps({ req, res }) {
   
   const appointments = await axios
     .get(process.env.NEXT_PUBLIC_GET_DOCTOR_APPOINTMENTS,{headers:{id:id}})
-    .then((r) => r.data);
-
+    .then((r) => r.data); 
   return {
     props: {
       sessionData: sessionRequest,
