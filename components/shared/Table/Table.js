@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
-import { Spinner, Table } from "react-bootstrap";
+import { Col, Row, Spinner, Table } from "react-bootstrap";
 import { Button } from "antd";
 import Modal from "../Modal";
 
 const TableCom = (props) => {
   const [data, setData] = useState([]);
-  const [state, setState] = useState({ value: "", open: false });
+  const [state, setState] = useState({
+    value: {},
+    open: false,
+    appointmentsOnly: false,
+  });
 
   useEffect(() => {
     setData(props.data);
@@ -26,6 +30,8 @@ const TableCom = (props) => {
         key !== "updatedAt"
     );
   }
+
+  console.log(state);
 
   return (
     <>
@@ -55,6 +61,7 @@ const TableCom = (props) => {
                                   setState({
                                     value: ele[key] || `No ${key}`,
                                     open: true,
+                                    appointmentsOnly: true,
                                   });
                                 }}
                               >{`View ${key}`}</button>
@@ -96,7 +103,99 @@ const TableCom = (props) => {
         onClick={null}
         footer={false}
       >
-        <div className="p-3">{state.value.firstName}</div>
+        {state.appointmentsOnly && (
+          <Row className="p-4">
+            <Col md={6}>
+              <div className="mt-2">
+                <label>
+                  <strong>First Name:</strong>
+                </label>
+                <br />
+                <label>{state.value.firstName}</label>
+              </div>
+              <div className="mt-2">
+                <label>
+                  <strong>First Name:</strong>
+                </label>
+                <br />
+                <label>{state.value.lastName}</label>
+              </div>
+              <div className="mt-2">
+                <label>
+                  <strong>D.O.B:</strong>
+                </label>
+                <br />
+                <label>{state.value.dob}</label>
+              </div>
+              <div className="mt-2">
+                <label>
+                  <strong>Gender:</strong>
+                </label>
+                <br />
+                <label>{state.value.gender}</label>
+              </div>
+              <div className="mt-2">
+                <label>
+                  <strong>Height:</strong>
+                </label>
+                <br />
+                <label>{state.value.height}</label>
+              </div>
+              <div className="mt-2">
+                <label>
+                  <strong>Weight:</strong>
+                </label>
+                <br />
+                <label>{state.value.weight}</label>
+              </div>
+            </Col>
+            <Col md={6}>
+             
+              <div className="mt-2">
+                <label>
+                  <strong>Phone No:</strong>
+                </label>
+                <br />
+                <label>{state.value.phone}</label>
+              </div>
+              <div className="mt-2">
+                <label>
+                  <strong>Email:</strong>
+                </label>
+                <br />
+                <label>{state.value.email}</label>
+              </div>
+              <div className="mt-2">
+                <label>
+                  <strong>Married:</strong>
+                </label>
+                <br />
+                <label>{state.value.married}</label>
+              </div>
+              <div className="mt-2">
+                <label>
+                  <strong>Children:</strong>
+                </label>
+                <br />
+                <label>{state.value.children}</label>
+              </div>
+              <div className="mt-2">
+                <label>
+                  <strong>Tobbaco:</strong>
+                </label>
+                <br />
+                <label>{state.value.tobacco}</label>
+              </div>
+              <div className="mt-2">
+                <label>
+                  <strong>Alcohol:</strong>
+                </label>
+                <br />
+                <label>{state.value.alcohol}</label>
+              </div>
+            </Col>
+          </Row>
+        )}
       </Modal>
     </>
   );
