@@ -153,8 +153,8 @@ const ServicesEdit = ({ state, dispatch, onSubmit }) => {
               onChange={handleChange}
               className="custom-focus"
               size="md"
-              type="text"
-              placeholder="$500"
+              type="number"
+              placeholder="500"
             />
           </Form.Group>
           <button className="btn-orange-light mt-3" onClick={addPrice}>

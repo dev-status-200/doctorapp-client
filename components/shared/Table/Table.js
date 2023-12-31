@@ -31,8 +31,6 @@ const TableCom = (props) => {
     );
   }
 
-  console.log(state);
-
   return (
     <>
       {data.length >= 1 && props.loading == false ? (
