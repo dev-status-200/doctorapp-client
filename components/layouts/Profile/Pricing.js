@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 
 import { Col, Form } from "react-bootstrap";
 
-import Card from "@/components/shared/Cards/SecondaryCard";
+import {Card} from "@/components/shared/Cards/SecondaryCard";
 import PrimaryModal from "@/components/shared/Modal";
 
 const Pricing = ({ data }) => {
@@ -125,7 +125,10 @@ const PricingEdit = ({ state, dispatch, onSubmit }) => {
         setShow={setShow}
         title={"Add new service"}
         primary_text={"Add"}
+        footer={true}
         show={show}
+        backdrop={'none'}
+        keyboard={true}
         loading={false}
         onClick={addService}
         onPrimaryAction={addService}

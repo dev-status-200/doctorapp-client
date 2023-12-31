@@ -1,0 +1,25 @@
+.subscription_card {
+  background-color: #fbfbfb;
+
+  li {
+    list-style: none;
+  }
+
+  span {
+    align-items: center;
+    align-self: center;
+    max-width: auto;
+
+    h6 {
+      color: black;
+      font-weight: 600;
+    }
+    div:nth-child(1) {
+      background-color: #dee5ff;
+    }
+  }
+}
+
+.key-features{
+  list-style: none;
+}

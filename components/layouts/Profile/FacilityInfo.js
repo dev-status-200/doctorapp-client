@@ -3,7 +3,7 @@ import React from "react";
 import { Col, Row, Form } from "react-bootstrap";
 import { HiPlusCircle } from "react-icons/hi2";
 
-import Card from "@/components/shared/Cards/SecondaryCard";
+import {Card} from "@/components/shared/Cards/SecondaryCard";
 import UploadFile from "@/components/shared/Form/UploadFile";
 import IconButton from "@/components/shared/Form/IconButton";
 import { SecondaryTextArea } from "@/components/shared/Form/TextArea";

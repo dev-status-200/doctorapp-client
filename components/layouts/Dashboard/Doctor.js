@@ -9,7 +9,9 @@ import Card from "../../shared/Cards/Card";
 
 import moment from "moment";
 
-const Doctor = () => {
+const Doctor = ({appointments}) => {
+  const [loading, setLoading] = useState(false)
+
   const data = {
     labels: ["Complete Appointments", "Cancel Appointments"],
     data: [300, 150],
@@ -18,7 +20,13 @@ const Doctor = () => {
   };
 
   useEffect(() => {
+    setLoading(true)
     getUsername();
+    if(appointments.length>0){
+      setLoading(false)
+    }else{
+      setLoading(false)
+    }
   }, [])
 
   const [username, setUsername] = useState("")
@@ -50,8 +58,8 @@ const Doctor = () => {
     </div>
     <div className="row main-section">
       <div className="col-md-6">
-        <Card length={dataArray.length} pagination={false} viewTable={true} title={"Todays Appointments"}>
-          <Table data={dataArray} cols={dataColumns} />
+        <Card length={appointments.length} pagination={false} viewTable={true} title={"Todays Appointments"}>
+          <Table  data={appointments} loading={loading} cols={dataColumns} />
         </Card>
       </div>
       <div className="col-md-6">

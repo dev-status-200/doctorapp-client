@@ -8,6 +8,9 @@ import Profile from "@/components/layouts/Profile";
 import verifyToken from "@/apis/verifyToken";
 
 const profile = ({ sessionData, data, loading }) => {
+  console.log(
+    sessionData,
+  )
   useEffect(() => {
     if (data === null || sessionData === null || loading) {
       Router.push("/login");

@@ -9,7 +9,7 @@
     background-size: cover;
   }
 
-  .login-inp {
+  .login-inp{
     color: rgb(0, 0, 0);
     padding: 10px 0px 10px 0px;
     border: 1px solid silver;
@@ -20,31 +20,31 @@
     text-align: left;
     width: 70%;
   }
-
-  .login-inp:focus {
+    
+  .login-inp:focus{
     outline: #4a4e5000;
     border: 1px solid silver;
   }
 
-  .username-img {
+  .username-img{
     color: rgb(210, 95, 0);
     position: relative;
     right: 6%;
     font-size: 20px;
   }
   .btn-login {
-    background-color: rgb(210, 95, 0) !important;
-    color: white !important;
-    border: none !important;
-    padding: 10px !important;
-    width: 70% !important;
-    border-radius: 10px !important;
-    box-shadow: 10px 10px 12px -10px rgba(213, 99, 2, 0.75);
-    -webkit-box-shadow: 10px 10px 12px -10px rgba(213, 99, 2, 0.75);
-    -moz-box-shadow: 10px 10px 12px -10px rgba(213, 99, 2, 0.75);
+    background-color: rgb(210, 95, 0);
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 70%;
+    border-radius: 10px;
+    box-shadow: 10px 10px 12px -10px rgba(213,99,2,0.75);
+    -webkit-box-shadow: 10px 10px 12px -10px rgba(213,99,2,0.75);
+    -moz-box-shadow: 10px 10px 12px -10px rgba(213,99,2,0.75);
   }
 
-  .provider-login {
+  .provider-login{
     background-color: rgba(255, 255, 255, 0);
     border: 1px solid silver;
     padding: 10px;
@@ -53,78 +53,15 @@
     font-size: 12px;
     font-weight: 600;
   }
-  .top-container {
+  .top-container{
     height: 85vh;
   }
-  .bottom-container {
+  .bottom-container{
     display: flex;
     flex: 1;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-end;
     height: 15vh;
-  }
-}
-
-//===AdminLoginStyles===//
-$gradient-start: rgb(249, 194, 146); // Lighter shade of orange
-$gradient-end: rgb(234, 138, 74); // Darker shade of orange
-
-.login-container {
-  display: flex !important;
-  justify-content: center;
-  align-items: center !important;
-  width: 100% !important;
-  min-height: 100vh;
-  background: radial-gradient(
-    circle,
-    $gradient-start 0%,
-    $gradient-end 100%,
-    $gradient-end 100%
-  );
-  padding: 16px !important;
-  padding-top: 25px !important;
-  background-repeat: no-repeat;
-  background-size: cover !important;
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    padding-top: 50px !important;
-  }
-}
-
-.login-card {
-  background: #ffffff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 4px;
-  padding: 20px;
-  width: 25%;
-  text-align: center;
-
-  h2 {
-    font-size: 40px;
-    font-weight: 600;
-    margin-top: 50px;
-    text-align: left;
-    margin-bottom: 20px;
-  }
-
-  form {
-    .form-group {
-      text-align: left;
-      label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: 500;
-      }
-
-      input {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin-bottom: 10px;
-      }
-    }
   }
 }

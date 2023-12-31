@@ -1,52 +1,50 @@
-
 //===Pricing===//
 .services-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 20px;
-    padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 20px;
+  padding: 20px;
 
-  
-    .service-card {
-      border-radius: 5px;
-      padding: 10px;
-      background-color: #fff;
-  
-      .service-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 13.5px;
-        color: #333;
-        margin-bottom: 10px;
-        
-        height: 30% !important;
-        .remove-service {
-          cursor: pointer;
-          background-color: #f1f0f0;
-          padding: 2px 6px 2px;
-          border-radius: 100px;
-          background-color: rgb(252, 223, 204);
-          color: #f60; // Change this to any desired color for the 'X' remove icon
-        }
-      }
-  
-      .service-price {
-        font-size: 14px;
-        padding: 12px;
-        border-radius: 10px;
+  .service-card {
+    border-radius: 5px;
+    padding: 10px;
+    background-color: #fff;
+
+    .service-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13.5px;
+      color: #333;
+      margin-bottom: 10px;
+
+      height: 30% !important;
+      .remove-service {
+        cursor: pointer;
         background-color: #f1f0f0;
-        border: 1px solid #e0e0e0;
-        color: #555;
+        padding: 2px 6px 2px;
+        border-radius: 100px;
+        background-color: rgb(252, 223, 204);
+        color: #f60; // Change this to any desired color for the 'X' remove icon
       }
     }
+
+    .service-price {
+      font-size: 14px;
+      padding: 12px;
+      border-radius: 10px;
+      background-color: #f1f0f0;
+      border: 1px solid #e0e0e0;
+      color: #555;
+    }
   }
+}
 
 //==Global-Grid===//
-.scroll-div{
+.scroll-div {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20px, 1fr));
-  gap:14px;
+  gap: 14px;
   max-height: 50%;
   padding: 5px;
   background-color: white !important;

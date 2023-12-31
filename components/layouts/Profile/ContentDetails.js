@@ -1,8 +1,8 @@
 import React from "react";
 
-import { Col, Row, Form } from "react-bootstrap";
+import { Col, Form } from "react-bootstrap";
 
-import Card from "@/components/shared/Cards/SecondaryCard";
+import {Card} from "@/components/shared/Cards/SecondaryCard";
 
 const ContentDetails = ({ data }) => {
   return (
@@ -102,7 +102,7 @@ const ContentDetailsEdit = ({ state, dispatch, onSubmit }) => {
 
   return (
     <Col md={11} className="m-auto justify-content-center mt-4">
-      <Card title={"Clinic Information"}>
+      <Card title={"Contact Detail"}>
         <form className="m-3 row" onSubmit={(e)=>{onSubmit(e)}}>
           <Col md={4}>
             <Form.Group>

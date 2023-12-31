@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Cookies from "js-cookie";
 
-import Card from "@/components/shared/Cards/SecondaryCard";
+import {Card} from "@/components/shared/Cards/SecondaryCard";
 import IconButton from "@/components/shared/Form/IconButton";
 import { HiXCircle } from "react-icons/hi2";
 import { Col, Form, Row } from "react-bootstrap";

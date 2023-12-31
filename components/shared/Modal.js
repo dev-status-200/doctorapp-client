@@ -9,20 +9,31 @@ const PrimaryModal = ({
   setShow,
   onClick,
   loading,
+  backdrop,
+  keyboard,
+  footer,
 }) => {
   return (
-    <Modal centered show={show} onHide={setShow}>
+    <Modal
+      keyboard={keyboard}
+      backdrop={backdrop}
+      centered
+      show={show}
+      onHide={setShow}
+    >
       <Modal.Header closeButton>
         <Modal.Title style={{ color: "#f10" }}>{title}</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>{children}</Modal.Body>
 
-      <Modal.Footer>
-        <button disabled={loading} onClick={onClick} className="btn-orange">
-          {loading ? <Spinner size="sm" color="white" /> : primary_text}
-        </button>
-      </Modal.Footer>
+      {footer && (
+        <Modal.Footer>
+          <button disabled={loading} onClick={onClick} className="btn-orange">
+            {loading ? <Spinner size="sm" color="white" /> : primary_text}
+          </button>
+        </Modal.Footer>
+      )}
     </Modal>
   );
 };
