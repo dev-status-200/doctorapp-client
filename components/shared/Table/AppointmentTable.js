@@ -25,7 +25,7 @@ const AppointmentTable = (props) => {
     <>
       {data.length >= 1 && props.loading == false ? (
         <div className="table-container">
-          <Table bordered className="table">
+          <Table  className="table">
             <thead>
               <tr>
                 <th>Patient Name</th>
@@ -38,9 +38,8 @@ const AppointmentTable = (props) => {
 
             <tbody>
               {data.map((item, index) => {
-                console.log(item);
                 return (
-                  <tr>
+                  <tr key={index}>
                     <td>
                       {item.Client.firstName} {item.Client.lastName}
                     </td>
@@ -58,7 +57,9 @@ const AppointmentTable = (props) => {
                         }}
                       >View Patient Info</button>
                     </td>
-                    <td></td>
+                    <td>{item.AppointmentServices.map((x,i)=>{
+                      return <div key={i}>{x.Pricing.name} ${x.Pricing.price}</div>
+                    })}</td>
                   </tr>
                 );
               })}
