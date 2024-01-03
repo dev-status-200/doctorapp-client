@@ -57,7 +57,7 @@ const AppointmentTable = (props) => {
                         }}
                       >View Patient Info</button>
                     </td>
-                    <td>{item.AppointmentServices.map((x,i)=>{
+                    <td>{item.AppointmentServices?.map((x,i)=>{
                       return <div key={i}>{x.Pricing.name} ${x.Pricing.price}</div>
                     })}</td>
                   </tr>
