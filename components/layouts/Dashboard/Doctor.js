@@ -3,11 +3,11 @@ import Cookies from "js-cookie";
 import { dataArray, dataColumns } from "@/mock/appointments";
 import { HiOutlineCalendarDays } from "react-icons/hi2";
 
-import Table from "../../shared/Table/Table";
 import PieChart from "../../shared/Charts/PieChart";
 import Card from "../../shared/Cards/Card";
 
 import moment from "moment";
+import AppointmentTable from "@/components/shared/Table/AppointmentTable";
 
 const Doctor = ({appointments}) => {
   const [loading, setLoading] = useState(false)
@@ -59,7 +59,7 @@ const Doctor = ({appointments}) => {
     <div className="row main-section">
       <div className="col-md-6">
         <Card length={appointments.length} pagination={false} viewTable={true} title={"Todays Appointments"}>
-          <Table  data={appointments} loading={loading} cols={dataColumns} />
+          <AppointmentTable  data={appointments} loading={loading} cols={dataColumns} />
         </Card>
       </div>
       <div className="col-md-6">

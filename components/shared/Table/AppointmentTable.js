@@ -3,7 +3,7 @@ import { Col, Row, Spinner, Table } from "react-bootstrap";
 import { Button } from "antd";
 import Modal from "../Modal";
 
-const TableCom = (props) => {
+const AppointmentTable = (props) => {
   const [data, setData] = useState([]);
   const [state, setState] = useState({
     value: {},
@@ -15,23 +15,11 @@ const TableCom = (props) => {
     setData(props.data);
   }, []);
 
-  let keys;
-  if (data?.length >= 1) {
-    keys = Object.keys(...data);
-    keys = keys.filter(
-      (key) =>
-        key !== "id" &&
-        key !== "type" &&
-        key !== "img" &&
-        key !== "_id" &&
-        key !== "ClientId" &&
-        key !== "DoctorId" &&
-        key !== "createdAt" &&
-        key !== "updatedAt"
-    );
-  }
-
-  console.log(data);
+  const formatTime = (value) => {
+    const timestamp = value;
+    const formattedDate = new Date(timestamp).toLocaleDateString();
+    return formattedDate;
+  };
 
   return (
     <>
@@ -40,42 +28,40 @@ const TableCom = (props) => {
           <Table bordered className="table">
             <thead>
               <tr>
-                {keys.map((ele, index) => {
-                  return <th key={index}>{ele.toUpperCase()}</th>;
-                })}
+                <th>Patient Name</th>
+                <th>Time</th>
+                <th>Location</th>
+                <th>Patient Info</th>
+                <th>Services</th>
               </tr>
             </thead>
 
             <tbody>
-              {data.map((ele, i) => {
+              {data.map((item, index) => {
+                console.log(item);
                 return (
-                  <tr key={i}>
-                    {keys.map((key, index) => {
-                      return (
-                        <>
-                          {key === "Client" ? (
-                            <td>
-                              <button
-                                className="btn-orange-special rounded"
-                                onClick={() => {
-                                  setState({
-                                    value: ele[key] || `No ${key}`,
-                                    open: true,
-                                    appointmentsOnly: true,
-                                  });
-                                }}
-                              >{`View ${key}`}</button>
-                            </td>
-                          ) : (
-                            <td key={index}> {ele[key]}</td>
-                          )}
-                        </>
-                      );
-                    })}
+                  <tr>
+                    <td>
+                      {item.Client.firstName} {item.Client.lastName}
+                    </td>
+                    <td>{item.selectHour}</td>
+                    <td>{formatTime(item.selectedDate)}</td>
+                    <td className=" m-auto text-center">
+                      <button
+                        className="btn-orange-special rounded"
+                        onClick={() => {
+                          setState({
+                            value:item.Client,
+                            open: true,
+                            appointmentsOnly: true,
+                          });
+                        }}
+                      >View Patient Info</button>
+                    </td>
+                    <td></td>
                   </tr>
                 );
               })}
-              <tr></tr>
             </tbody>
           </Table>
         </div>
@@ -150,7 +136,6 @@ const TableCom = (props) => {
               </div>
             </Col>
             <Col md={6}>
-             
               <div className="mt-2">
                 <label>
                   <strong>Phone No:</strong>
@@ -201,6 +186,4 @@ const TableCom = (props) => {
   );
 };
 
-export default TableCom;
-
-
+export default AppointmentTable;

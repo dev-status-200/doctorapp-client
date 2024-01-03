@@ -12,19 +12,19 @@
     .appointments-count {
       display: flex;
       align-items: center;
-      margin-top: 10px;
-      margin-bottom: 1px;
+      margin-top: 1px;
+  
   
       .number {
-        width: 30px;
-        height: 30px;
+        width: 35px;
+        height: 35px;
         background-color: #e5e5e5;
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
         font-weight: bold;
-        margin-right: 10px;
+    
       }
     }
   
@@ -81,6 +81,15 @@
           top: 50%;
           transform: translateY(-50%);
           pointer-events: none;
+        }
+        .toggle-sort{
+          background-color: #e5e5e5;
+          border: #e5e5e5;
+          .sort-icon{
+            color: gray;
+            font-size: 20px;
+            margin-right: 15px;
+          }
         }
       }
     }
