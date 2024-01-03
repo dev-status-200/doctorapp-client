@@ -64,31 +64,6 @@ const Subscription = ({data }) => {
     setShow(true);
   };
 
-  const onClick = () => {
-    setLoading(true);
-    try {
-      axios
-        .post(process.env.NEXT_PUBLIC_DOCTOR_PROFILE_UPDATE, state)
-        .then((r) => {
-          if (r.data.status === "success") {
-            setMessage(
-              "Please wait! Your changes are being save and then you will be redirected to your profile dashboard."
-            );
-            notificationComp(
-              "Profile updated!",
-              "Your changes are being saved.",
-              "green"
-            );
-            window.location.reload();
-          } else {
-            notificationComp("Error!", "Profile not updated!", "red");
-          }
-        });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
   return (
     <>
       <div className="container-fluid mt-2">
@@ -124,8 +99,8 @@ const Subscription = ({data }) => {
         title={"Save Changes?"}
         primary_text={"Yes"}
         show={show}
-        onClick={onClick}
-        onPrimaryAction={onClick}
+        onClick={null}
+        onPrimaryAction={null}
       >
         <p>{message}</p>
       </PrimaryModal>
