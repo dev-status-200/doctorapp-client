@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Col, Row, Spinner, Table } from "react-bootstrap";
-import { Button } from "antd";
 import Modal from "../Modal";
 
 const AppointmentTable = (props) => {
@@ -21,6 +20,8 @@ const AppointmentTable = (props) => {
     return formattedDate;
   };
 
+console.log(data);
+
   return (
     <>
       {data.length >= 1 && props.loading == false ? (
@@ -30,7 +31,7 @@ const AppointmentTable = (props) => {
               <tr>
                 <th>Patient Name</th>
                 <th>Time</th>
-                <th>Location</th>
+                <th>Date</th>
                 <th>Patient Info</th>
                 <th>Services</th>
               </tr>
