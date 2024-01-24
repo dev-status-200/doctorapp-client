@@ -289,6 +289,22 @@ const ClinicalInformationEdit = ({ state, dispatch, onSubmit }) => {
                     </Form.Group>
                   </Col>
                   <Col md={4} className="mt-4">
+                  <Form.Group>
+                      <Form.Label>Clinic Website</Form.Label>
+                      <Form.Control
+                        required
+                        value={clinic.website || ""}
+                        onChange={(e) =>
+                          handleChange(index, "website", e.target.value)
+                        }
+                        className="custom-focus"
+                        size="md"
+                        type="text"
+                        placeholder="www.xyzclinic.com"
+                      />
+                    </Form.Group>
+                  </Col>
+                  <Col md={4} className="mt-5">
                     <Form.Group>
                       <button
                         className="btn-orange"

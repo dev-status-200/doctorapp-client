@@ -130,7 +130,7 @@ const ExperienceEdit = ({ state, dispatch, onSubmit }) => {
               )}
               <Col md={4}>
                 <Form.Group>
-                  <Form.Label>Hospital</Form.Label>
+                  <Form.Label>Facility</Form.Label>
                   <Form.Control
                     required
                     value={experience.hospitalName||''}
@@ -177,7 +177,7 @@ const ExperienceEdit = ({ state, dispatch, onSubmit }) => {
               <div className="mt-4" />
               <Col md={4}>
                 <Form.Group>
-                  <Form.Label>Designation</Form.Label>
+                  <Form.Label>Title</Form.Label>
                   <Form.Control
                     required
                     value={experience.designation||''}
