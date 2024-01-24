@@ -10,6 +10,7 @@
 //===Layout===//
 @import "./layout/auth/loginStyles.scss";
 @import "./layout/dashboard/adminStyles.scss";
+@import "./layout/bookings/bookingStyles.scss";
 @import "./layout/dashboard/doctorStyles.scss";
 @import "./layout/profile/profileStyles.scss";
 @import "./layout/subscription/subscriptionStyles.scss";
@@ -82,11 +83,11 @@
   }
 
   .btn-orange-light {
-    background-color: rgb(248, 220, 197);
-    color: rgb(210, 95, 0);;
-    border: none;
-    border-radius: 5px;
-    padding: 5px 20px;
+    background-color: rgb(248, 220, 197) !important;
+    color: rgb(210, 95, 0) !important;
+    border: none !important;
+    border-radius: 5px !important;
+    padding: 5px 20px !important;
   }
   
   .btn-orange {
