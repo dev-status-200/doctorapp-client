@@ -4,7 +4,7 @@ import { SessionProvider } from "next-auth/react";
 import "@/styles/globals.css";
 import "@/styles/main.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+// hello worlds
 import Loader from "@/components/shared/Loader";
 import Layout from "@/components/shared/Layout";
 
